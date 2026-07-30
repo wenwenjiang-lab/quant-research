@@ -7,9 +7,11 @@
 > **Status: active research portfolio.** Registered studies may be complete,
 > but this repository does not claim validated alpha or a deployable strategy.
 
-Start with the concise [`executive summary`](reports/executive_summary.md).
-The registered Phase II question did **not** pass its development confirmation
-gate; the final holdout remains sealed.
+Start with the concise [`research portfolio summary`](reports/executive_summary.md).
+Study 01 produced a registered negative forecasting result and kept its final
+holdout sealed. Study 02 confirmed a small MNQ–QQQ information-transmission
+effect in a single-use holdout. Neither result is presented as validated Alpha
+or a deployable strategy.
 
 This repository develops a reproducible empirical-research workflow for liquid
 futures and ETFs. The first study examines opening-range behavior in Micro
@@ -108,8 +110,9 @@ Registered gate fails -> stop research question and keep holdout sealed
 quant-research/
 ├── .github/workflows/          # Continuous test validation
 ├── configs/
-│   ├── opening_range.toml      # Phase I machine-readable specification
-│   └── phase2_forecasting.toml # Forecasting protocol and confirmation gate
+│   ├── opening_range.toml       # Phase I machine-readable specification
+│   ├── phase2_forecasting.toml  # Forecasting protocol and confirmation gate
+│   └── cross_asset_lead_lag.toml # Frozen MNQ–QQQ specification
 ├── data/
 │   ├── README.md               # Provenance, schema and limitations
 │   ├── raw/                    # Licensed source data; never committed
@@ -127,9 +130,16 @@ quant-research/
 │   ├── forecast_validation.py  # Expanding-window folds and holdout guard
 │   ├── forecast_models.py      # Baselines, losses and paired inference
 │   ├── synthetic_demo.py       # Data-free end-to-end software demonstration
+│   ├── cross_asset.py          # Point-in-time MNQ–QQQ panel construction
+│   ├── cross_asset_models.py   # Restricted and unrestricted baselines
+│   ├── cross_asset_evaluation.py # Walk-forward comparison and inference
+│   ├── cross_asset_holdout.py  # Single-use holdout enforcement
 │   └── validation.py           # Leakage-resistant time-series splits
 ├── reports/
-│   ├── executive_summary.md    # Recruiter-facing evidence and decision
+│   ├── executive_summary.md    # Recruiter-facing two-study summary
+│   ├── cross_asset_protocol.md # Registered information-transmission design
+│   ├── cross_asset_development_results.md # Development-only evidence
+│   ├── cross_asset_final_results.md # Single-use holdout decision
 │   └── research_methodology.md # Prespecified research standards
 ├── tests/                      # Deterministic synthetic-data tests
 ├── PORTFOLIO_ROADMAP.md
