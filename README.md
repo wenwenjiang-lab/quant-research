@@ -4,8 +4,8 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776AB.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-> **Status: active research — work in progress.** This repository does not
-> claim a completed study, validated alpha, or deployable trading strategy.
+> **Status: active research portfolio.** Registered studies may be complete,
+> but this repository does not claim validated alpha or a deployable strategy.
 
 Start with the concise [`executive summary`](reports/executive_summary.md).
 The registered Phase II question did **not** pass its development confirmation
@@ -159,13 +159,11 @@ an empirical result.
 - Preserve negative and inconclusive findings.
 - Do not describe a backtest as a production strategy.
 
-## Next independent research
+## Study 02 — MNQ–QQQ Information Transmission
 
-The registered MNQ question is closed before holdout evaluation. Any nonlinear
-model, alternative target, or different opening window must use a new study ID
-and validation plan. The next portfolio study will examine cross-asset
-information transmission between Nasdaq futures and QQQ, with synchronized
-timestamps, lead-lag controls, and a separately protected evaluation sample.
+This independent study examines cross-asset information transmission between
+Nasdaq futures and QQQ with synchronized timestamps, lead-lag controls, and a
+separately protected evaluation sample.
 
 The draft protocol is now versioned in
 [`reports/cross_asset_protocol.md`](reports/cross_asset_protocol.md), with its
@@ -180,10 +178,14 @@ Development results are reported in
 Lagged MNQ returns improve one-minute QQQ forecasts in the development sample,
 but the improvement disappears when the one-minute lag is removed. This is
 evidence of rapid information transmission, not validated Alpha or a trading
-strategy. Licensed observations remain local and the final holdout is sealed.
+strategy. Licensed observations remain local. The final holdout was evaluated
+exactly once and confirmed a smaller positive effect: 0.1888% incremental OOS
+R² with paired-loss p = 0.0182 and session-level p = 0.0432.
 The single-use holdout procedure is frozen in
 [`reports/cross_asset_holdout_execution.md`](reports/cross_asset_holdout_execution.md),
-but execution is not yet authorized.
+and the final decision is reported in
+[`reports/cross_asset_final_results.md`](reports/cross_asset_final_results.md).
+The holdout is now permanently closed to retuning or repeat evaluation.
 
 ## Disclaimer
 

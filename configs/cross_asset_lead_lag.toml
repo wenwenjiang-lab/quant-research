@@ -1,7 +1,7 @@
 [study]
 study_id = "nq-qqq-lead-lag-001"
 title = "Point-in-Time Information Transmission Between Nasdaq Futures and QQQ"
-status = "development_gate_passed_holdout_sealed"
+status = "final_holdout_confirmed_study_complete_no_alpha_claim"
 timezone = "America/New_York"
 
 [universe]
@@ -54,6 +54,9 @@ final_holdout_sessions = 358
 holdout_analysis_allowed = false
 holdout_execution_phrase_required = true
 holdout_execution_expected_sessions = 358
+holdout_evaluation_completed = true
+holdout_rerun_allowed = false
+holdout_execution_completed_utc = "2026-07-30T23:30:21.791253+00:00"
 
 [metrics]
 primary_loss = "squared_error"
@@ -80,4 +83,4 @@ single_holdout_evaluation_only = true
 [interpretation]
 alpha_claim_allowed = false
 trading_strategy_claim_allowed = false
-reason = "Development evidence supports one-minute information transmission from MNQ to QQQ, but the improvement disappears at longer latency; the final holdout remains sealed and no Alpha or trading-strategy claim is allowed."
+reason = "The single final holdout confirms one-minute incremental information from MNQ to QQQ, but the effect is small and disappears at longer latency; no Alpha or trading-strategy claim is allowed."
