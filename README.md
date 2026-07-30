@@ -38,6 +38,8 @@ current construction audit is in
 [`reports/data_quality_report.md`](reports/data_quality_report.md). The
 development-only model report is in
 [`reports/development_analysis.md`](reports/development_analysis.md). The
+Phase II forecasting protocol is in
+[`reports/phase2_protocol.md`](reports/phase2_protocol.md). The
 machine-readable draft specification is in
 [`configs/opening_range.toml`](configs/opening_range.toml).
 

@@ -1,0 +1,56 @@
+[study]
+study_id = "mnq-opening-range-002"
+title = "Incremental Out-of-Sample Intraday Volatility Forecasting"
+status = "preregistered_development_only"
+decision_time = "10:00"
+timezone = "America/New_York"
+
+[target]
+name = "post_1000_realized_range_bps"
+window_start = "10:00"
+window_end = "16:00"
+directional = false
+
+[information_set]
+feature_cutoff = "10:00"
+strictly_exclude_post_cutoff_information = true
+historical_features = ["lag5_mean_session_range_bps", "lag20_mean_session_range_bps", "previous_session_range_bps"]
+preopen_features = ["overnight_return_bps", "overnight_range_bps", "opening_gap_bps"]
+opening_range_features = ["opening_range_width_bps", "opening_range_return_bps", "opening_range_realized_range_bps"]
+
+[models]
+primary_baseline = "preopen_and_historical_linear"
+primary_candidate = "baseline_plus_opening_range_linear"
+secondary_baselines = ["historical_mean", "lag5_volatility", "har_style"]
+exploratory_models = ["elastic_net", "gradient_boosting"]
+exploratory_models_can_determine_confirmation = false
+
+[validation]
+method = "expanding_window"
+minimum_training_sessions = 504
+test_block_sessions = 63
+embargo_sessions = 1
+random_shuffle_allowed = false
+ordinary_kfold_allowed = false
+final_holdout_start = "2024-05-24"
+holdout_analysis_allowed = false
+
+[metrics]
+primary_loss = "qlike"
+secondary_losses = ["mae", "rmse"]
+report_oos_r_squared = true
+paired_loss_test = "diebold_mariano_hac"
+calibration_required = true
+
+[confirmation_gate]
+primary_oos_r_squared_must_exceed = 0.0
+candidate_qlike_must_beat_baseline = true
+paired_loss_p_value_must_be_below = 0.05
+positive_improvement_fraction_must_exceed = 0.60
+no_unexplained_regime_sign_reversal = true
+protocol_and_code_must_be_frozen = true
+single_holdout_evaluation_only = true
+
+[interpretation]
+alpha_claim_allowed = false
+reason = "Phase II protocol is frozen only after implementation review; final holdout remains sealed."
