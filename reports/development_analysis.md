@@ -92,6 +92,32 @@ The magnitude and uncertainty vary substantially by year, and the partial 2024
 development estimate is negative. This weakens any claim that one stable linear
 relationship characterizes all regimes. The final holdout remains sealed.
 
+## Prespecified sensitivity results
+
+All analyses below use development sessions only. They test whether the baseline
+association is an artifact of extreme observations, linear functional form,
+trailing-volatility composition, or continuous-contract transitions.
+
+| Sensitivity | Sessions | Slope or coefficient | HAC/robust 95% interval |
+|---|---:|---:|---:|
+| Theil–Sen median pairwise slope | 1,256 | 0.6501 | [0.5438, 0.7586] |
+| Exclude Cook's distance above `4/n` | 1,179 | 0.7047 | [0.6128, 0.7967] |
+| Exclude roll and mixed-contract sessions | 1,237 | 0.7955 | [0.5926, 0.9984] |
+| Low trailing-volatility third | 417 | 0.3235 | [0.1058, 0.5411] |
+| Middle trailing-volatility third | 417 | 0.4295 | [0.1660, 0.6930] |
+| High trailing-volatility third | 417 | 0.7172 | [0.3292, 1.1051] |
+
+The robust and influence-trimmed slopes remain positive but are smaller than
+the baseline estimate. Excluding roll-related sessions has little effect. The
+slope increases across trailing-volatility thirds, reinforcing the conclusion
+that market regime materially affects the estimated relationship.
+
+A centered quadratic model estimates a linear coefficient of 0.7305 and a
+quadratic coefficient of 0.000743. The quadratic term's HAC p-value is 0.576,
+providing no development-sample evidence that this simple curvature improves
+the linear specification. This is a functional-form diagnostic, not model
+selection on the final holdout.
+
 ## What this does not show
 
 - The outcome is magnitude, not direction; the model does not say whether price
@@ -107,13 +133,12 @@ relationship characterizes all regimes. The final holdout remains sealed.
 
 ## Next validation gates
 
-1. Run robust-estimator, influence-removal, and nonlinear-form sensitivities on
-   the development period, reporting all prespecified variants.
-2. Run registered calendar, roll-boundary, and volatility-regime sensitivities.
-3. Decide whether the model is sufficiently stable to justify confirmation; a
+1. Add a registered calendar sensitivity without selecting favorable subgroups.
+2. Decide whether the observed cross-year and volatility-regime instability is
+   acceptable under an explicit confirmation gate; a
    negative decision is an acceptable research result.
-4. Freeze the protocol and code version before permitting holdout access.
-5. Evaluate the primary model exactly once on the final holdout only if the
+3. Freeze the protocol and code version before permitting holdout access.
+4. Evaluate the primary model exactly once on the final holdout only if the
    development diagnostics justify doing so.
-6. Treat any later directional or economic strategy analysis as a separate,
+5. Treat any later directional or economic strategy analysis as a separate,
    explicitly timed research question.

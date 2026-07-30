@@ -61,6 +61,12 @@ control_information_set = "sessions_strictly_before_current_session"
 influence_diagnostic = "cooks_distance_4_over_n"
 residual_dependence_diagnostics = ["durbin_watson", "lag1_autocorrelation"]
 yearly_slopes_status = "descriptive_not_separate_confirmatory_tests"
+robust_slope_estimator = "theil_sen"
+influence_sensitivity = "exclude_cooks_distance_above_4_over_n"
+nonlinear_form = "centered_quadratic_with_hac"
+volatility_regimes = "tertiles_of_lag5_mean_session_range_bps"
+roll_sensitivity = "exclude_contract_switch_and_mixed_contract_sessions"
+all_sensitivities_sample = "development_only"
 
 [quality]
 reject_duplicate_timestamps = true
