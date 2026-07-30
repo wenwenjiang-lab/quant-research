@@ -167,6 +167,12 @@ and validation plan. The next portfolio study will examine cross-asset
 information transmission between Nasdaq futures and QQQ, with synchronized
 timestamps, lead-lag controls, and a separately protected evaluation sample.
 
+The draft protocol is now versioned in
+[`reports/cross_asset_protocol.md`](reports/cross_asset_protocol.md), with its
+machine-readable specification in
+[`configs/cross_asset_lead_lag.toml`](configs/cross_asset_lead_lag.toml).
+No QQQ observations or empirical cross-asset results have been added.
+
 ## Disclaimer
 
 Research and educational use only. Nothing in this repository is investment

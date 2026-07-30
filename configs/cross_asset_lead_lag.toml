@@ -1,0 +1,78 @@
+[study]
+study_id = "nq-qqq-lead-lag-001"
+title = "Point-in-Time Information Transmission Between Nasdaq Futures and QQQ"
+status = "protocol_draft_no_empirical_results"
+timezone = "America/New_York"
+
+[universe]
+futures_primary = "MNQ"
+futures_replication = "NQ"
+etf = "QQQ"
+bar_frequency = "1min"
+session_start = "09:30"
+session_end = "16:00"
+
+[data_contract]
+timestamps_represent = "interval_start"
+bars_are_left_closed_right_open = true
+prices_are_unadjusted_intraday = true
+qqq_corporate_actions_required = true
+futures_roll_policy_required = true
+licensed_observations_must_not_be_committed = true
+
+[research_question]
+primary = "Do lagged MNQ returns improve one-minute QQQ return forecasts beyond QQQ's own lagged returns?"
+reverse_direction = "Do lagged QQQ returns improve one-minute MNQ return forecasts beyond MNQ's own lagged returns?"
+primary_horizon_minutes = 1
+secondary_horizons_minutes = [5, 15]
+registered_lags_minutes = [1, 2, 3, 4, 5]
+
+[information_set]
+strict_point_in_time = true
+same_timestamp_cross_asset_predictors_forbidden = true
+forward_fill_prices_forbidden = true
+interpolate_returns_forbidden = true
+complete_overlapping_intervals_only = true
+
+[models]
+restricted = "own_lags_linear"
+unrestricted = "own_lags_plus_cross_asset_lags_linear"
+regularization = "none_primary"
+exploratory_models = ["ridge", "elastic_net"]
+exploratory_models_can_determine_confirmation = false
+
+[validation]
+method = "expanding_window_by_session"
+minimum_training_sessions = 252
+test_block_sessions = 21
+embargo_sessions = 1
+random_shuffle_allowed = false
+ordinary_kfold_allowed = false
+final_holdout_fraction = 0.20
+holdout_analysis_allowed = false
+
+[metrics]
+primary_loss = "squared_error"
+secondary_losses = ["absolute_error", "directional_accuracy"]
+report_incremental_oos_r_squared = true
+paired_loss_test = "diebold_mariano_hac"
+
+[inference]
+primary_test = "granger_style_nested_forecast_comparison"
+standard_errors = "newey_west_hac"
+multiple_testing_adjustment = "holm"
+cluster_sensitivity = "trading_session"
+
+[confirmation_gate]
+incremental_oos_r_squared_must_exceed = 0.0
+paired_loss_p_value_must_be_below = 0.05
+positive_improvement_fraction_must_exceed = 0.60
+reverse_direction_must_be_reported = true
+latency_sensitivity_must_be_reported = true
+protocol_and_code_must_be_frozen = true
+single_holdout_evaluation_only = true
+
+[interpretation]
+alpha_claim_allowed = false
+trading_strategy_claim_allowed = false
+reason = "This file freezes a draft design only; no synchronized empirical panel or holdout result exists."
