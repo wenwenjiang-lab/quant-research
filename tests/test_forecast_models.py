@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import pytest
-from src.forecast_models import evaluate_forecasts, expanding_linear_predictions, qlike_loss
+from src.forecast_models import diebold_mariano_hac, evaluate_forecasts, expanding_linear_predictions, fold_loss_stability, qlike_loss
 
 
 def test_qlike_is_zero_for_perfect_forecast() -> None:
@@ -18,3 +18,14 @@ def test_expanding_predictions_are_out_of_sample() -> None:
     metrics = evaluate_forecasts(predictions, benchmark_forecast=np.full(len(predictions), panel.y.iloc[:20].mean()))
     assert metrics.observations == len(predictions)
     assert metrics.oos_r_squared > 0.9
+
+
+def test_paired_loss_comparison_and_fold_stability() -> None:
+    candidate_loss = np.array([1., 2., 1., 2., 1., 2.])
+    baseline_loss = candidate_loss + np.array([.2, .3, .1, .4, .2, .3])
+    result = diebold_mariano_hac(candidate_loss, baseline_loss, max_lags=1)
+    assert result.mean_candidate_minus_baseline < 0
+    candidate = pd.DataFrame({"session_date": pd.bdate_range("2023-01-02", periods=4), "actual": [2.,3.,4.,5.], "forecast": [2.,3.,4.,5.], "fold": [0,0,1,1]})
+    baseline = candidate.assign(forecast=[1.,2.,3.,4.])
+    folds = fold_loss_stability(candidate, baseline)
+    assert (folds.improvement > 0).all()

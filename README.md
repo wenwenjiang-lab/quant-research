@@ -42,6 +42,8 @@ Phase II forecasting protocol is in
 [`reports/phase2_protocol.md`](reports/phase2_protocol.md). The
 development-only feature audit is in
 [`reports/phase2_data_quality.md`](reports/phase2_data_quality.md). The
+development-period forecasting decision is documented in
+[`reports/phase2_development_results.md`](reports/phase2_development_results.md). The
 machine-readable draft specification is in
 [`configs/opening_range.toml`](configs/opening_range.toml).
 

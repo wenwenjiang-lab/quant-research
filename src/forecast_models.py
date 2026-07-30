@@ -3,6 +3,7 @@
 from dataclasses import dataclass
 import numpy as np
 import pandas as pd
+from scipy import stats
 
 from .forecast_validation import expanding_window_folds
 
@@ -14,6 +15,15 @@ class ForecastMetrics:
     rmse: float
     qlike: float
     oos_r_squared: float
+
+
+@dataclass(frozen=True)
+class LossComparison:
+    observations: int
+    mean_candidate_minus_baseline: float
+    hac_standard_error: float
+    test_statistic: float
+    p_value: float
 
 
 def qlike_loss(actual: np.ndarray, forecast: np.ndarray) -> np.ndarray:
@@ -63,3 +73,36 @@ def evaluate_forecasts(predictions: pd.DataFrame, *, benchmark_forecast: np.ndar
     errors = actual - forecast
     denominator = np.sum((actual - benchmark) ** 2)
     return ForecastMetrics(len(actual), float(np.mean(np.abs(errors))), float(np.sqrt(np.mean(errors**2))), float(np.mean(qlike_loss(actual, forecast))), float(1 - np.sum(errors**2) / denominator))
+
+
+def diebold_mariano_hac(
+    candidate_loss: np.ndarray, baseline_loss: np.ndarray, *, max_lags: int = 5
+) -> LossComparison:
+    """Test the mean paired loss difference with Newey-West uncertainty."""
+    candidate = np.asarray(candidate_loss, float)
+    baseline = np.asarray(baseline_loss, float)
+    if candidate.shape != baseline.shape or candidate.ndim != 1 or len(candidate) < 3:
+        raise ValueError("Loss arrays must be aligned one-dimensional samples")
+    if not np.isfinite(candidate).all() or not np.isfinite(baseline).all():
+        raise ValueError("Loss arrays must be finite")
+    if not 0 <= max_lags < len(candidate):
+        raise ValueError("Invalid HAC lag count")
+    differential = candidate - baseline
+    centered = differential - differential.mean()
+    long_run_variance = float(centered @ centered) / len(centered)
+    for lag in range(1, max_lags + 1):
+        covariance = float(centered[lag:] @ centered[:-lag]) / len(centered)
+        long_run_variance += 2 * (1 - lag / (max_lags + 1)) * covariance
+    standard_error = float(np.sqrt(max(long_run_variance, 0) / len(centered)))
+    if standard_error == 0:
+        raise ValueError("HAC standard error is zero")
+    statistic = float(differential.mean() / standard_error)
+    return LossComparison(len(differential), float(differential.mean()), standard_error, statistic, float(2 * stats.norm.sf(abs(statistic))))
+
+
+def fold_loss_stability(candidate: pd.DataFrame, baseline: pd.DataFrame) -> pd.DataFrame:
+    """Return paired QLIKE improvement by registered evaluation fold."""
+    merged = candidate.merge(baseline[["session_date", "forecast"]], on="session_date", suffixes=("_candidate", "_baseline"), validate="one_to_one")
+    merged["candidate_loss"] = qlike_loss(merged["actual"].to_numpy(), merged["forecast_candidate"].to_numpy())
+    merged["baseline_loss"] = qlike_loss(merged["actual"].to_numpy(), merged["forecast_baseline"].to_numpy())
+    return merged.groupby("fold", as_index=False).agg(observations=("actual", "size"), candidate_qlike=("candidate_loss", "mean"), baseline_qlike=("baseline_loss", "mean")).assign(improvement=lambda x: x.baseline_qlike - x.candidate_qlike)
