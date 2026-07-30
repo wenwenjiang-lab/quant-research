@@ -79,4 +79,6 @@ not modeled.
 - separation of statistical evidence from economic or trading claims.
 
 Detailed protocols, audits, results, limitations, and reproducible synthetic
-tests are linked from the repository [`README`](../README.md).
+tests are linked from the repository [`README`](../README.md). The registered
+MNQ–QQQ model pair and its governance boundaries are condensed in the
+[`model card`](cross_asset_model_card.md).
