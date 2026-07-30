@@ -1,6 +1,6 @@
 # Cross-Asset Development Results
 
-> **Status: development gate passed; final holdout sealed.** These results use
+> **Status: development gate passed; final holdout later confirmed.** These results use
 > only observations before 2025-02-20. They are evidence of short-horizon
 > information transmission, not a trading strategy or validated Alpha.
 
@@ -42,9 +42,9 @@ performed.
 
 The prespecified numerical development criteria are satisfied in the primary
 direction, the reverse direction is reported, and latency sensitivity is
-documented. The final holdout remains sealed until this code and report are
-reviewed and frozen. If opened, it must be evaluated exactly once using the
-registered specification; no post-holdout tuning is permitted.
+documented. After this code and report were frozen, the final holdout was
+evaluated exactly once and confirmed the registered statistical relationship.
+See `cross_asset_final_results.md`. No post-holdout tuning is permitted.
 
 ## Limitations
 

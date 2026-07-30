@@ -1,8 +1,8 @@
 # Cross-Asset Final-Holdout Execution Plan
 
-> **Status: frozen but not authorized.** This document defines the only
-> permitted final-holdout evaluation. No observation beginning 2025-02-20 or
-> later has been inspected by the model or summarized in a result.
+> **Status: executed once and permanently closed.** The frozen procedure was
+> explicitly authorized and run once. Aggregate results are reported in
+> `cross_asset_final_results.md`; rerunning or retuning is prohibited.
 
 ## Preconditions
 
@@ -10,7 +10,7 @@
 2. All automated tests pass on the exact frozen code revision.
 3. The development gate and latency sensitivity are reported publicly.
 4. A separate explicit decision authorizes the irreversible single evaluation.
-5. `holdout_analysis_allowed` remains `false` until that decision.
+5. After completion, execution returns to a locked state and reruns are denied.
 
 ## Frozen execution
 
