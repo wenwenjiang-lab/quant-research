@@ -20,6 +20,15 @@ The emphasis is on falsifiable hypotheses, reliable market-data construction,
 leakage-resistant validation, statistical uncertainty, and clear reporting of
 negative or inconclusive evidence.
 
+## Run without market data
+
+Exercise the full forecasting path with deterministic synthetic data. This
+validates software behavior only and does not reproduce or imply market results:
+
+```bash
+python -m src.synthetic_demo
+```
+
 ## Study 01 — Opening Range Behavior in Nasdaq-100 Futures
 
 **Question.** Are prespecified opening-range characteristics associated with
