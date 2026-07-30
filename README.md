@@ -59,7 +59,9 @@ Session-level analytical panel
 Development sample -> expanding-window validation -> untouched holdout
         |
         v
-Effect sizes, uncertainty, multiplicity control and robustness checks
+Effect sizes, uncertainty, multiplicity control and development-only robustness
+checks—including robust slopes, influence removal, nonlinear form, trailing
+volatility regimes, and contract-roll sensitivity
         |
         v
 Candidate signal only if statistical and economic evidence survives
@@ -96,6 +98,7 @@ quant-research/
 │   ├── opening_range.py        # Opening-range calculation
 │   ├── study_dataset.py        # Session-level feature/outcome panel
 │   ├── statistical_tests.py    # Inference and multiplicity controls
+│   ├── robustness_analysis.py  # Guarded development-only sensitivities
 │   └── validation.py           # Leakage-resistant time-series splits
 ├── reports/
 │   └── research_methodology.md # Prespecified research standards
