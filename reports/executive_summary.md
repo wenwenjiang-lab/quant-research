@@ -58,6 +58,8 @@ It was evaluated exactly once.
 | Restricted directional accuracy | 48.64% |
 | Unrestricted directional accuracy | 50.27% |
 
+![MNQ–QQQ final holdout evidence](../figures/cross_asset_holdout_summary.svg)
+
 The frozen statistical confirmation rule is satisfied. The effect is smaller
 than in development and disappears in the registered latency sensitivity when
 the one-minute MNQ lag is removed. This supports a narrow interpretation of
