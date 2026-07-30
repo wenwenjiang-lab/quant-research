@@ -14,6 +14,8 @@ directional = false
 [information_set]
 feature_cutoff = "10:00"
 strictly_exclude_post_cutoff_information = true
+availability_registry_enforced = true
+target_derived_features_forbidden = true
 historical_features = ["lag5_mean_session_range_bps", "lag20_mean_session_range_bps", "previous_session_range_bps"]
 preopen_features = ["overnight_return_bps", "overnight_range_bps", "opening_gap_bps"]
 opening_range_features = ["opening_range_width_bps", "opening_range_return_bps", "opening_range_realized_range_bps"]
