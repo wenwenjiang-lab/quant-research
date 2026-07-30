@@ -1,108 +1,143 @@
-# Quantitative Market Research Portfolio
+# Quantitative Market Research
 
-> **Status: Active research portfolio — work in progress.** No trading result, alpha claim, or performance conclusion should be inferred from unfinished studies.
+[![Tests](https://github.com/wenwenjiang-lab/quant-research/actions/workflows/tests.yml/badge.svg)](https://github.com/wenwenjiang-lab/quant-research/actions/workflows/tests.yml)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776AB.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-This repository applies a scientific research workflow to systematic market behavior across liquid futures and ETFs. The current study uses Micro E-mini Nasdaq-100 futures (MNQ) as the first test case; the methods are designed to extend to NQ, ES, SPY, QQQ, and other liquid instruments.
+> **Status: active research — work in progress.** This repository does not
+> claim a completed study, validated alpha, or deployable trading strategy.
 
-The portfolio emphasizes reproducible evidence rather than discretionary trade ideas or unsupported performance claims.
+This repository develops a reproducible empirical-research workflow for liquid
+futures and ETFs. The first study examines opening-range behavior in Micro
+E-mini Nasdaq-100 futures (MNQ). MNQ is the initial test case; the research
+design is intended to extend to NQ, ES, QQQ, SPY, and related instruments.
 
-## Research capabilities
+The emphasis is on falsifiable hypotheses, reliable market-data construction,
+leakage-resistant validation, statistical uncertainty, and clear reporting of
+negative or inconclusive evidence.
 
-| Capability | Evidence |
-|---|---|
-| Hypothesis-driven research | Prespecified questions, null/alternative hypotheses, variables, tests, and limitations |
-| Python research engineering | Validated data loading, reusable feature calculations, typed functions, and unit tests |
-| Statistical reasoning | Effect estimates, confidence intervals, hypothesis tests, and multiple-testing control |
-| Time-series validation | Chronological and expanding-window splits that prevent look-ahead leakage |
-| Market understanding | Opening range, volatility, transaction costs, session definitions, and contract-roll risks |
-| Communication | Research design, methodology, assumptions, status labels, and explicit limitations |
+## Study 01 — Opening Range Behavior in Nasdaq-100 Futures
 
-## Current research program
+**Question.** Are prespecified opening-range characteristics associated with
+the direction or magnitude of the remainder of the same trading session?
 
-### Study 01 — Opening Range Behavior in Nasdaq-100 Futures
+**Primary unit of analysis.** One regular trading session.
 
-**Instrument:** CME Micro E-mini Nasdaq-100 futures (MNQ)  
-**Theme:** Intraday futures behavior and candidate signal validation  
-**Status:** 🚧 Research in progress
+**Current state.** The protocol, data contract, quality gates, feature pipeline,
+statistical utilities, and chronological validation tools are implemented. A
+licensed local Databento sample covering May 2019 through July 2026 is undergoing
+session, calendar, and continuous-contract audits. Development-only estimates
+show a positive but regime-sensitive magnitude association that attenuates after
+controlling for lagged volatility. Influence diagnostics remain unresolved; the
+final holdout has not been accessed and no confirmatory inference is reported.
 
-The study asks whether prespecified opening-range characteristics are associated with the direction or magnitude of subsequent same-session price behavior. The design is documented in [research_questions.md](research_questions.md), and the validation standards are documented in [reports/research_methodology.md](reports/research_methodology.md).
+The full hypotheses and limitations are in
+[`research_questions.md`](research_questions.md). The methodology is in
+[`reports/research_methodology.md`](reports/research_methodology.md), and the
+current construction audit is in
+[`reports/data_quality_report.md`](reports/data_quality_report.md). The
+development-only model report is in
+[`reports/development_analysis.md`](reports/development_analysis.md). The
+machine-readable draft specification is in
+[`configs/opening_range.toml`](configs/opening_range.toml).
 
-No market data, empirical result, backtest, or claim of alpha has been added yet.
-
-## Research pipeline
+## Research architecture
 
 ```text
-Question and economic rationale
-        ↓
-Prespecified signal and outcome
-        ↓
-Data validation and session construction
-        ↓
-Descriptive statistics and effect sizes
-        ↓
-Chronological / walk-forward validation
-        ↓
-Costs, robustness, and multiple-testing controls
-        ↓
-Candidate signal — only if evidence survives
+Licensed raw bars (local only)
+        |
+        v
+Schema, timestamp, OHLCV and interval audits
+        |
+        v
+Session construction and prespecified opening-range features
+        |
+        v
+Session-level analytical panel
+        |
+        v
+Development sample -> expanding-window validation -> untouched holdout
+        |
+        v
+Effect sizes, uncertainty, multiplicity control and robustness checks
+        |
+        v
+Candidate signal only if statistical and economic evidence survives
 ```
 
-## Research roadmap
+## Implemented research controls
 
-| Stage | Study | Status |
-|---|---|---|
-| 1 | MNQ opening-range behavior | In progress |
-| 2 | Regime and parameter robustness | Planned |
-| 3 | MNQ/NQ/QQQ cross-instrument comparison | Planned |
-| 4 | ES/SPY external validation | Planned |
-| 5 | Multi-signal and portfolio analysis | Planned |
-| 6 | Machine learning versus statistical baselines | Planned |
-
-See [PORTFOLIO_ROADMAP.md](PORTFOLIO_ROADMAP.md) for milestones and completion criteria.
+| Research risk | Control implemented in this repository |
+|---|---|
+| Ambiguous timestamps | Timezone-aware parsing and explicit New York conversion |
+| Invalid observations | OHLC invariants, volume checks, duplicate and interval audits |
+| Look-ahead leakage | Opening features and post-opening outcomes use disjoint intervals |
+| Random time-series splitting | Chronological and expanding-window validation utilities |
+| Multiple comparisons | Holm family-wise p-value adjustment |
+| Overstated conclusions | Minimum-sample gate and explicit in-progress status |
+| Restricted vendor data | Raw and processed observations excluded from version control |
 
 ## Repository structure
 
 ```text
 quant-research/
-├── .github/workflows/       # Automated test checks
+├── .github/workflows/          # Continuous test validation
+├── configs/
+│   └── opening_range.toml      # Draft machine-readable study specification
 ├── data/
-│   ├── raw/                 # Original licensed data (not committed)
-│   └── processed/           # Derived analytical data (not committed)
-├── notebooks/               # Reproducible analyses (planned)
+│   ├── README.md               # Provenance, schema and limitations
+│   ├── raw/                    # Licensed source data; never committed
+│   └── processed/              # Reproducible derived data; never committed
+├── notebooks/                  # Thin exploratory/reporting notebooks
 ├── src/
-│   ├── data_loader.py       # OHLC loading and validation
-│   ├── opening_range.py     # Opening-range feature calculations
-│   ├── statistical_tests.py # Inference and multiplicity controls
-│   └── validation.py        # Leakage-resistant time-series splits
-├── figures/                 # Generated figures (not committed)
-├── reports/                 # Methods and research reports
-├── tests/                   # Synthetic-data unit tests
+│   ├── data_loader.py          # Typed OHLC ingestion and validation
+│   ├── databento_loader.py      # Vendor normalization and RTH selection
+│   ├── data_quality.py         # Structural market-data audit
+│   ├── opening_range.py        # Opening-range calculation
+│   ├── study_dataset.py        # Session-level feature/outcome panel
+│   ├── statistical_tests.py    # Inference and multiplicity controls
+│   └── validation.py           # Leakage-resistant time-series splits
+├── reports/
+│   └── research_methodology.md # Prespecified research standards
+├── tests/                      # Deterministic synthetic-data tests
 ├── PORTFOLIO_ROADMAP.md
 ├── research_questions.md
 ├── pyproject.toml
 └── requirements.txt
 ```
 
-## Local setup
+## Reproduce the test suite
 
 ```bash
 python -m venv .venv
-python -m pip install -r requirements.txt
+python -m pip install -e ".[dev]"
 python -m pytest
 ```
 
-Tests use synthetic fixtures only. The repository contains no fabricated market observations.
+Tests use synthetic fixtures only. No fabricated market observation is used as
+an empirical result.
 
-## Research standards
+## Research principles
 
-- Separate exploratory analysis from confirmatory testing.
-- Define timestamps, time zones, sessions, and contract rolls explicitly.
-- Preserve chronological order and isolate holdout periods.
-- Report effect sizes and confidence intervals alongside p-values.
-- Control multiple testing across intervals, thresholds, and outcomes.
-- Include fees, spread, slippage, and realistic execution assumptions before discussing economic value.
-- Document negative and inconclusive results.
+- Freeze primary definitions before inspecting the final holdout.
+- Treat data construction as part of the statistical model.
+- Report sample size, effect size, confidence interval, and failure periods.
+- Prefer transparent baselines before complex machine-learning models.
+- Distinguish statistical association from economic value after costs.
+- Preserve negative and inconclusive findings.
+- Do not describe a backtest as a production strategy.
+
+## Roadmap
+
+1. Complete exchange-calendar, missing-bar, and contract-roll audits.
+2. Expand the sample to satisfy the protocol's minimum-session requirement.
+3. Freeze the confirmatory specification and final holdout boundary.
+4. Produce descriptive statistics without tuning on the holdout.
+5. Run prespecified inference and robustness checks.
+6. Evaluate execution costs only if a relationship survives validation.
+7. Test external validity in NQ/QQQ and then ES/SPY.
 
 ## Disclaimer
 
-This repository is for research and educational purposes only. It is not investment advice and does not represent a completed or deployable trading strategy.
+Research and educational use only. Nothing in this repository is investment
+advice or evidence of guaranteed performance.
