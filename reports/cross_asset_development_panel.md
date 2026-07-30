@@ -46,6 +46,12 @@ timezone-aware holdout-boundary cases.
 
 This artifact establishes a reproducible and leakage-resistant development
 sample. It does **not** establish predictability, economic value, a trading
-strategy, or validated Alpha. Model specification and expanding-window
-evaluation remain subsequent development-only stages. The final holdout stays
-sealed until all confirmation code and decision rules are frozen.
+strategy, or validated Alpha. The registered restricted and unrestricted
+linear baselines are implemented in `src/cross_asset_models.py`. They use
+identical expanding training windows, one-session embargoes, and test rows,
+with splits defined by trading sessions rather than individual minutes. No
+empirical model output is reported here. The final holdout remains sealed.
+The prespecified OOS R-squared, fold-stability fraction, HAC paired-loss test,
+and confirmation gate are implemented separately in
+`src/cross_asset_evaluation.py` and tested only with synthetic fixtures at this
+stage.
