@@ -7,6 +7,10 @@
 > **Status: active research — work in progress.** This repository does not
 > claim a completed study, validated alpha, or deployable trading strategy.
 
+Start with the concise [`executive summary`](reports/executive_summary.md).
+The registered Phase II question did **not** pass its development confirmation
+gate; the final holdout remains sealed.
+
 This repository develops a reproducible empirical-research workflow for liquid
 futures and ETFs. The first study examines opening-range behavior in Micro
 E-mini Nasdaq-100 futures (MNQ). MNQ is the initial test case; the research
