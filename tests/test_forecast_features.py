@@ -6,6 +6,7 @@ from src.forecast_features import (
     assert_no_target_in_features,
     audit_feature_cutoff,
     build_phase2_features,
+    build_intraday_forecast_rows,
 )
 
 
@@ -32,3 +33,14 @@ def test_target_leakage_guard() -> None:
         assert_no_target_in_features(["post_1000_realized_range_bps"], "post_1000_realized_range_bps")
     with pytest.raises(ValueError, match="Target leakage"):
         assert_no_target_in_features(["post_1000_high"], "post_1000_realized_range_bps")
+
+
+def test_intraday_windows_are_separated() -> None:
+    timestamps = pd.DatetimeIndex([pd.Timestamp("2023-01-02 15:59", tz="America/New_York")]).append(
+        pd.date_range("2023-01-03 08:00", "2023-01-03 15:59", freq="1min", tz="America/New_York")
+    )
+    bars = pd.DataFrame({"timestamp": timestamps, "open": 100.0, "high": 101.0, "low": 99.0, "close": 100.5})
+    rows = build_intraday_forecast_rows(bars)
+    assert len(rows) == 1
+    assert rows.loc[0, "feature_max_timestamp"].time() < pd.Timestamp("10:00").time()
+    assert rows.loc[0, "target_min_timestamp"].time() == pd.Timestamp("10:00").time()
