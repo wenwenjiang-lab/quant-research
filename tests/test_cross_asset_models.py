@@ -78,4 +78,4 @@ def test_mixed_daylight_saving_offsets_from_csv_are_normalized():
         minimum_training_sessions=4, test_block_sessions=2, embargo_sessions=1,
     )
     assert predictions["session_date"].nunique() == 3
-    assert str(predictions["session_date"].dtype).startswith("datetime64[ns,")
+    assert isinstance(predictions["session_date"].dtype, pd.DatetimeTZDtype)
