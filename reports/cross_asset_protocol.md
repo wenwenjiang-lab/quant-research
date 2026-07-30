@@ -1,8 +1,11 @@
 # Cross-Asset Information-Transmission Protocol
 
-> **Status: data-audited protocol; no model result.** This study has a new
-> study ID and does not reopen or retune the completed MNQ Opening Range
-> question. Timestamp coverage freezes the final holdout at 2025-02-20.
+> **Protocol status: frozen historical specification. Study status: complete.**
+> This document preserves the design registered before confirmatory analysis;
+> it is not updated retroactively to fit the result. The single-use holdout was
+> later evaluated exactly once. See the
+> [`final decision`](cross_asset_final_results.md) and
+> [`model card`](cross_asset_model_card.md).
 
 ## Research question
 

@@ -185,6 +185,9 @@ The leakage-safe development-panel audit is in
 [`reports/cross_asset_development_panel.md`](reports/cross_asset_development_panel.md).
 Development results are reported in
 [`reports/cross_asset_development_results.md`](reports/cross_asset_development_results.md).
+The registered model pair, information timing, allowed uses, and known
+limitations are summarized in the
+[`model card`](reports/cross_asset_model_card.md).
 Lagged MNQ returns improve one-minute QQQ forecasts in the development sample,
 but the improvement disappears when the one-minute lag is removed. This is
 evidence of rapid information transmission, not validated Alpha or a trading
