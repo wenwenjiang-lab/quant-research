@@ -1,52 +1,89 @@
-# Quantitative Research Portfolio
+# Quantitative Market Research Portfolio
 
-> **Status: In progress.** This repository contains active research. No results or conclusions should be inferred from the current materials.
+> **Status: Active research portfolio — work in progress.** No trading result, alpha claim, or performance conclusion should be inferred from unfinished studies.
 
-This repository documents my independent quantitative research into intraday behavior of Nasdaq-100 futures (MNQ). Its objective is to investigate whether statistically significant market behaviors exist through hypothesis-driven research rather than discretionary trading.
+This repository applies a scientific research workflow to systematic market behavior across liquid futures and ETFs. The current study uses Micro E-mini Nasdaq-100 futures (MNQ) as the first test case; the methods are designed to extend to NQ, ES, SPY, QQQ, and other liquid instruments.
 
-The repository is intended as a long-term public research portfolio spanning systematic trading, market microstructure, and statistical analysis. The emphasis is on clearly stated hypotheses, transparent methods, tested analytical code, and careful discussion of limitations—not trading signals or performance claims.
+The portfolio is aimed at early-career opportunities in quantitative research, quantitative trading, and markets analytics. It emphasizes reproducible evidence rather than discretionary trade ideas or unsupported performance claims.
 
-## Current research project
+## Recruiter snapshot
 
-### Statistical Analysis of Opening Range Behavior in Nasdaq-100 Futures (MNQ)
+| Capability | Evidence in this repository |
+|---|---|
+| Hypothesis-driven research | Prespecified questions, null/alternative hypotheses, variables, tests, and limitations |
+| Python research engineering | Validated data loading, reusable feature calculations, typed functions, and unit tests |
+| Statistical reasoning | Effect estimates, confidence intervals, hypothesis tests, and multiple-testing control |
+| Time-series validation | Chronological and expanding-window splits that prevent look-ahead leakage |
+| Market understanding | Opening range, volatility, transaction costs, session definitions, and contract-roll risks |
+| Communication | Research design, methodology, assumptions, status labels, and explicit limitations |
 
-This project investigates whether features of the MNQ opening range are associated with subsequent intraday price behavior. The research design is documented in [research_questions.md](research_questions.md). Data acquisition, exploratory analysis, statistical testing, and robustness checks remain in progress.
+## Current research program
 
-## Research topics
+### Study 01 — Opening Range Behavior in Nasdaq-100 Futures
 
-Current research focuses on opening ranges, VWAP interaction, momentum continuation, volatility expansion, session statistics, and market microstructure. Potential future work includes alpha research, feature engineering, machine learning, portfolio construction, and market-regime detection.
+**Instrument:** CME Micro E-mini Nasdaq-100 futures (MNQ)  
+**Theme:** Intraday futures behavior and candidate signal validation  
+**Status:** 🚧 Research in progress
 
-## Research workflow
+The study asks whether prespecified opening-range characteristics are associated with the direction or magnitude of subsequent same-session price behavior. The design is documented in [research_questions.md](research_questions.md), and the validation standards are documented in [reports/research_methodology.md](reports/research_methodology.md).
 
-Each project follows a scientific workflow: define a hypothesis, collect appropriately licensed historical data, clean and validate it, perform statistical analysis, evaluate statistical and economic significance, document findings, and draw appropriately limited conclusions.
+No market data, empirical result, backtest, or claim of alpha has been added yet.
 
-## Technology stack
+## Research pipeline
 
-Python, pandas, NumPy, SciPy, pytest, and Jupyter notebooks form the initial research stack. Visualization and reporting tools will be added as the analysis develops.
+```text
+Question and economic rationale
+        ↓
+Prespecified signal and outcome
+        ↓
+Data validation and session construction
+        ↓
+Descriptive statistics and effect sizes
+        ↓
+Chronological / walk-forward validation
+        ↓
+Costs, robustness, and multiple-testing controls
+        ↓
+Candidate signal — only if evidence survives
+```
+
+## Research roadmap
+
+| Stage | Study | Status |
+|---|---|---|
+| 1 | MNQ opening-range behavior | In progress |
+| 2 | Regime and parameter robustness | Planned |
+| 3 | MNQ/NQ/QQQ cross-instrument comparison | Planned |
+| 4 | ES/SPY external validation | Planned |
+| 5 | Multi-signal and portfolio analysis | Planned |
+| 6 | Machine learning versus statistical baselines | Planned |
+
+See [PORTFOLIO_ROADMAP.md](PORTFOLIO_ROADMAP.md) for milestones and completion criteria.
 
 ## Repository structure
 
 ```text
 quant-research/
+├── .github/workflows/       # Automated test checks
 ├── data/
-│   ├── raw/                 # Original source data (not committed)
-│   └── processed/           # Cleaned analytical datasets (not committed)
-├── notebooks/               # Exploratory and reproducible analyses
+│   ├── raw/                 # Original licensed data (not committed)
+│   └── processed/           # Derived analytical data (not committed)
+├── notebooks/               # Reproducible analyses (planned)
 ├── src/
-│   ├── data_loader.py       # Market-data loading and validation
-│   └── opening_range.py     # Opening-range calculations
-├── figures/                 # Generated charts and visualizations
-├── reports/                 # Research write-ups
-├── tests/
-│   └── test_opening_range.py
-├── research_questions.md    # Questions, hypotheses, and study design
-├── requirements.txt
-└── README.md
+│   ├── data_loader.py       # OHLC loading and validation
+│   ├── opening_range.py     # Opening-range feature calculations
+│   ├── statistical_tests.py # Inference and multiplicity controls
+│   └── validation.py        # Leakage-resistant time-series splits
+├── figures/                 # Generated figures (not committed)
+├── reports/                 # Methods and research reports
+├── tests/                   # Synthetic-data unit tests
+├── PORTFOLIO_ROADMAP.md
+├── research_questions.md
+├── pyproject.toml
+└── requirements.txt
 ```
 
-Empty directories include placeholder files so that the structure remains visible in version control. Market data should not be committed unless its license explicitly permits redistribution.
-
-## Setup and tests
+## Local setup
 
 ```bash
 python -m venv .venv
@@ -54,14 +91,18 @@ python -m pip install -r requirements.txt
 python -m pytest
 ```
 
-## Research principles
+Tests use synthetic fixtures only. The repository contains no fabricated market observations.
 
-- Separate exploratory work from confirmatory testing.
-- Document time zones, session definitions, contract rolls, and preprocessing.
-- Use out-of-sample validation where appropriate.
-- Report uncertainty, robustness checks, and negative results.
-- Avoid look-ahead bias, survivorship bias, and overstated conclusions.
+## Research standards
+
+- Separate exploratory analysis from confirmatory testing.
+- Define timestamps, time zones, sessions, and contract rolls explicitly.
+- Preserve chronological order and isolate holdout periods.
+- Report effect sizes and confidence intervals alongside p-values.
+- Control multiple testing across intervals, thresholds, and outcomes.
+- Include fees, spread, slippage, and realistic execution assumptions before discussing economic value.
+- Document negative and inconclusive results.
 
 ## Disclaimer
 
-This repository is for research and educational purposes only. It is not investment advice, and it does not represent a completed trading strategy.
+This repository is for research and educational purposes only. It is not investment advice and does not represent a completed or deployable trading strategy.
