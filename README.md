@@ -101,6 +101,8 @@ quant-research/
 │   ├── study_dataset.py        # Session-level feature/outcome panel
 │   ├── statistical_tests.py    # Inference and multiplicity controls
 │   ├── robustness_analysis.py  # Guarded development-only sensitivities
+│   ├── forecast_features.py    # Point-in-time features and leakage audit
+│   ├── forecast_validation.py  # Expanding-window folds and holdout guard
 │   └── validation.py           # Leakage-resistant time-series splits
 ├── reports/
 │   └── research_methodology.md # Prespecified research standards
