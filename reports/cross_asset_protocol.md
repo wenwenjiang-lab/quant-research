@@ -1,7 +1,8 @@
 # Cross-Asset Information-Transmission Protocol
 
-> **Status: protocol draft; no empirical result.** This study has a new study
-> ID and does not reopen or retune the completed MNQ Opening Range question.
+> **Status: data-audited protocol; no model result.** This study has a new
+> study ID and does not reopen or retune the completed MNQ Opening Range
+> question. Timestamp coverage freezes the final holdout at 2025-02-20.
 
 ## Research question
 
@@ -39,8 +40,10 @@ information.
 
 Models use expanding training windows, 21-session test blocks, and a
 one-session embargo. The newest 20% of eligible sessions is reserved as a
-single sealed holdout. Scaling, imputation, and any exploratory tuning must be
-fit inside each training window.
+single sealed holdout. The coverage audit identifies 1,787 complete common
+sessions and freezes the newest 358 sessions, beginning 2025-02-20, as that
+holdout. Scaling, imputation, and any exploratory tuning must be fit inside
+each training window.
 
 The primary comparison reports incremental out-of-sample R-squared and a
 HAC-aware paired loss test. The result must also be stable across more than 60%

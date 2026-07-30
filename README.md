@@ -171,7 +171,9 @@ The draft protocol is now versioned in
 [`reports/cross_asset_protocol.md`](reports/cross_asset_protocol.md), with its
 machine-readable specification in
 [`configs/cross_asset_lead_lag.toml`](configs/cross_asset_lead_lag.toml).
-No QQQ observations or empirical cross-asset results have been added.
+The non-redistributive coverage audit is in
+[`reports/cross_asset_data_quality.md`](reports/cross_asset_data_quality.md).
+No QQQ observations or empirical cross-asset model results have been added.
 
 ## Disclaimer
 
