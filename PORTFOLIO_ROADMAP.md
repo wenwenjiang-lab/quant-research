@@ -4,7 +4,7 @@
 
 ## Positioning
 
-The portfolio is designed to demonstrate transferable research ability across quantitative research, quantitative trading, and markets analytics. MNQ is the first empirical setting, not the limit of the research program.
+The portfolio is designed to develop a reusable research process across liquid futures and ETFs. MNQ is the first empirical setting, not the limit of the research program.
 
 ## Capability milestones
 
@@ -64,12 +64,12 @@ The portfolio is designed to demonstrate transferable research ability across qu
 
 **Completion evidence:** model card and walk-forward comparison against simple baselines.
 
-## Job-relevant evidence
+## Transferable research evidence
 
-| Target role | Evidence this portfolio will emphasize |
+| Research dimension | Evidence this portfolio will emphasize |
 |---|---|
-| Quantitative Research | Independent hypotheses, statistical modeling, time-series validation, reproducibility |
-| Quantitative Trading | Market mechanics, probability, risk, execution costs, rapid but disciplined analysis |
-| Markets / Data Analyst | Data quality, Python/SQL-ready workflows, clear reporting, stakeholder communication |
+| Empirical research | Independent hypotheses, statistical modeling, time-series validation, reproducibility |
+| Market analysis | Market mechanics, probability, risk, execution costs, disciplined interpretation |
+| Data engineering | Data quality, Python/SQL-ready workflows, clear reporting, reusable code |
 
-Low-latency engineering is not presented as a current specialty. C++, networking, operating systems, and hardware optimization would require a separate engineering portfolio.
+Low-latency infrastructure is outside the current research scope. C++, networking, operating systems, and hardware optimization would require a separate engineering project.
