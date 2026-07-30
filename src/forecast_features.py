@@ -77,19 +77,28 @@ def build_intraday_forecast_rows(
         clock = day["timestamp"].dt.time
         opening = day[(clock >= time(9, 30)) & (clock < time(10, 0))]
         target = day[(clock >= time(10, 0)) & (clock < time(16, 0))]
-        preopen = day[clock < time(9, 30)]
-        if len(opening) != 30 or len(target) != 360 or preopen.empty:
+        if len(opening) != 30 or len(target) != 360:
             continue
-        prior = work[work["session_date"] < date]
-        if prior.empty:
+        prior_days = work[work["session_date"] < date]
+        if prior_days.empty:
             continue
-        prior_close = float(prior.iloc[-1]["close"])
+        previous_date = prior_days["session_date"].max()
+        previous_day = prior_days[prior_days["session_date"] == previous_date]
+        previous_clock = previous_day["timestamp"].dt.time
+        previous_rth = previous_day[(previous_clock >= time(9, 30)) & (previous_clock < time(16, 0))]
+        if previous_rth.empty:
+            continue
+        previous_close_row = previous_rth.iloc[-1]
+        overnight = work[(work["timestamp"] > previous_close_row["timestamp"]) & (work["timestamp"] < opening.iloc[0]["timestamp"])]
+        if overnight.empty:
+            continue
+        prior_close = float(previous_close_row["close"])
         open_price = float(opening.iloc[0]["open"])
         or_end = float(opening.iloc[-1]["close"])
         rows.append({
             "session_date": date_ts,
-            "overnight_return_bps": (float(preopen.iloc[-1]["close"]) / prior_close - 1) * 10_000,
-            "overnight_range_bps": (float(preopen["high"].max()) - float(preopen["low"].min())) / prior_close * 10_000,
+            "overnight_return_bps": (float(overnight.iloc[-1]["close"]) / prior_close - 1) * 10_000,
+            "overnight_range_bps": (float(overnight["high"].max()) - float(overnight["low"].min())) / prior_close * 10_000,
             "opening_gap_bps": (open_price / prior_close - 1) * 10_000,
             "opening_range_width_bps": (float(opening["high"].max()) - float(opening["low"].min())) / open_price * 10_000,
             "opening_range_return_bps": (or_end / open_price - 1) * 10_000,
