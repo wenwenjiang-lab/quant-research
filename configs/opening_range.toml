@@ -1,0 +1,76 @@
+[study]
+study_id = "mnq-opening-range-001"
+status = "draft"
+instrument = "MNQ"
+timezone = "America/New_York"
+bar_frequency = "1min"
+unit_of_analysis = "trading_session"
+
+[data]
+provider = "Databento"
+dataset = "GLBX.MDP3"
+input_symbol = "MNQ.v.0"
+input_symbology = "continuous"
+continuous_contract_rank = 0
+continuous_contract_selection = "previous_day_volume"
+price_adjustment = "none"
+raw_timezone = "UTC"
+licensed_data_committed = false
+
+[sample]
+regular_session_start = "09:30"
+regular_session_end = "16:00"
+opening_range_start = "09:30"
+opening_range_end = "10:00"
+minimum_complete_sessions = 200
+development_fraction = 0.70
+final_holdout_fraction = 0.30
+
+[validation]
+split_assignment_method = "chronological_eligible_session_count"
+eligible_sessions = 1795
+development_sessions = 1256
+development_end = "2024-05-23"
+final_holdout_sessions = 539
+final_holdout_start = "2024-05-24"
+boundary_status = "provisional_until_protocol_freeze"
+holdout_analysis_allowed = false
+
+[hypothesis]
+primary_predictor = "opening_range_width_bps"
+primary_outcome = "post_opening_abs_return_bps"
+primary_estimand = "ols_slope"
+null_value = 0.0
+alternative = "two_sided"
+familywise_alpha = 0.05
+multiplicity_method = "holm"
+
+[primary_model]
+formula = "post_opening_abs_return_bps ~ 1 + opening_range_width_bps"
+estimator = "ordinary_least_squares"
+primary_uncertainty = "newey_west_hac"
+hac_max_lags = 5
+robustness_uncertainty = "moving_block_bootstrap"
+bootstrap_block_length_sessions = 5
+bootstrap_resamples = 5000
+missing_data_policy = "complete_case_no_imputation"
+
+[robustness]
+lagged_volatility_control = "lag5_mean_session_range_bps"
+control_information_set = "sessions_strictly_before_current_session"
+influence_diagnostic = "cooks_distance_4_over_n"
+residual_dependence_diagnostics = ["durbin_watson", "lag1_autocorrelation"]
+yearly_slopes_status = "descriptive_not_separate_confirmatory_tests"
+
+[quality]
+reject_duplicate_timestamps = true
+reject_nonpositive_prices = true
+require_timezone_aware_timestamps = true
+require_complete_opening_range = true
+expected_opening_range_bars = 30
+require_complete_outcome_window = true
+expected_post_opening_bars = 360
+
+[interpretation]
+alpha_claim_allowed = false
+reason = "Protocol is not frozen and the final holdout has not been analyzed."

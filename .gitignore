@@ -230,3 +230,4 @@ figures/*
 !figures/.gitkeep
 reports/*
 !reports/.gitkeep
+!reports/*.md

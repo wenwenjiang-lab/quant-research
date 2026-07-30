@@ -1,75 +1,69 @@
-# Quantitative Research Portfolio Roadmap
+# Quantitative Research Roadmap
 
-> **Status: In progress.** Planned items describe intended work, not completed skills, findings, or trading results.
+> **Status: in progress.** Milestones describe intended evidence, not completed
+> findings or trading performance.
 
-## Positioning
+## 1. Research protocol — in progress
 
-The portfolio is designed to develop a reusable research process across liquid futures and ETFs. MNQ is the first empirical setting, not the limit of the research program.
+- State a falsifiable question, estimand, and economic rationale.
+- Freeze hypotheses, outcomes, sampling rules, and exclusions.
+- Separate exploratory analysis from the untouched confirmatory holdout.
 
-## Capability milestones
+**Completion evidence:** versioned analysis specification and holdout boundary.
 
-### 1. Research design — in progress
+## 2. Reliable market-data pipeline — in progress
 
-- State a falsifiable question and economic rationale.
-- Define hypotheses, variables, sampling rules, and exclusions before confirmatory testing.
-- Separate exploratory choices from registered tests.
+- Validate schema, timestamps, OHLCV invariants, duplicates, and bar intervals.
+- Add exchange-calendar, shortened-session, and contract-roll treatment.
+- Produce deterministic analytical data without redistributing licensed data.
 
-**Completion evidence:** reviewed research design and a frozen analysis specification.
+**Completion evidence:** data-quality report with exclusion counts and tests.
 
-### 2. Reliable market-data pipeline — in progress
+## 3. Session-level research dataset — in progress
 
-- Validate schema, timestamps, prices, duplicates, missing bars, and session boundaries.
-- Document data provenance, licensing, exchange calendar, and futures roll treatment.
-- Produce deterministic processed data without committing restricted raw data.
+- Calculate opening-range features using only the registered opening interval.
+- Calculate outcomes strictly after feature formation.
+- Record ambiguous boundary breaks and incomplete sessions explicitly.
 
-**Completion evidence:** validation report and unit-tested transformation pipeline.
+**Completion evidence:** reproducible data dictionary and session panel.
 
-### 3. Statistical inference — in progress
+## 4. Statistical inference — planned
 
-- Report distributions, effect sizes, uncertainty, and sample sizes.
-- Test prespecified hypotheses with assumption-aware parametric or nonparametric methods.
-- Control multiplicity when comparing intervals, thresholds, or outcomes.
+- Report distributions, effect sizes, uncertainty, and diagnostics.
+- Use assumption-aware parametric, robust, or resampling inference.
+- Control the family-wise error rate across registered hypotheses.
 
-**Completion evidence:** reproducible tables with confidence intervals, corrected p-values, and diagnostics.
+**Completion evidence:** reproducible tables with corrected inference.
 
-### 4. Time-series validation — in progress
+## 5. Time-series validation — planned
 
-- Use chronological train/validation/test periods.
-- Add expanding-window analysis and regime sensitivity checks.
-- Prevent feature, label, normalization, and selection leakage.
+- Use chronological development, expanding-window validation, and final holdout.
+- Prevent leakage in features, labels, scaling, selection, and tuning.
+- Evaluate stability across volatility and macro-event regimes.
 
-**Completion evidence:** walk-forward evaluation with untouched final holdout data.
+**Completion evidence:** untouched holdout report with failure-period analysis.
 
-### 5. Economic evaluation — planned
+## 6. Economic evaluation — planned
 
-- Translate statistical relationships into prespecified, testable decision rules.
-- Model spread, commissions, slippage, latency, and contract liquidity.
-- Report turnover, drawdown, tail risk, capacity limitations, and benchmark comparisons.
+- Translate only validated associations into timestamped decision rules.
+- Model spread, fees, slippage, turnover, and conservative fills.
+- Report drawdown, tail risk, capacity constraints, and benchmark comparisons.
 
-**Completion evidence:** cost-aware evaluation; statistical significance alone is insufficient.
+**Completion evidence:** cost-aware evaluation; significance alone is insufficient.
 
-### 6. Cross-market robustness — planned
+## 7. External validity — planned
 
-- Compare MNQ with NQ and QQQ while accounting for different contract structures.
-- Test external validity in ES and SPY.
-- Identify shared effects, instrument-specific effects, and failure cases.
+- Compare MNQ with NQ and QQQ using harmonized definitions.
+- Extend the registered design to ES and SPY.
+- Distinguish shared effects from instrument-specific behavior.
 
-**Completion evidence:** harmonized study design and cross-instrument robustness report.
+**Completion evidence:** cross-instrument robustness report.
 
-### 7. Modeling extensions — planned
+## 8. Modeling extensions — planned
 
 - Establish transparent statistical baselines first.
-- Evaluate regularized linear models before more complex machine learning.
-- Compare out-of-sample incremental value, stability, interpretability, and costs.
+- Evaluate regularized linear models before nonlinear alternatives.
+- Compare machine learning by incremental out-of-sample value, stability,
+  calibration, interpretability, and cost sensitivity.
 
-**Completion evidence:** model card and walk-forward comparison against simple baselines.
-
-## Transferable research evidence
-
-| Research dimension | Evidence this portfolio will emphasize |
-|---|---|
-| Empirical research | Independent hypotheses, statistical modeling, time-series validation, reproducibility |
-| Market analysis | Market mechanics, probability, risk, execution costs, disciplined interpretation |
-| Data engineering | Data quality, Python/SQL-ready workflows, clear reporting, reusable code |
-
-Low-latency infrastructure is outside the current research scope. C++, networking, operating systems, and hardware optimization would require a separate engineering project.
+**Completion evidence:** model card and walk-forward baseline comparison.
