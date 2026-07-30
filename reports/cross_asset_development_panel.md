@@ -51,3 +51,7 @@ linear baselines are implemented in `src/cross_asset_models.py`. They use
 identical expanding training windows, one-session embargoes, and test rows,
 with splits defined by trading sessions rather than individual minutes. No
 empirical model output is reported here. The final holdout remains sealed.
+The prespecified OOS R-squared, fold-stability fraction, HAC paired-loss test,
+and confirmation gate are implemented separately in
+`src/cross_asset_evaluation.py` and tested only with synthetic fixtures at this
+stage.

@@ -1,7 +1,7 @@
 [study]
 study_id = "nq-qqq-lead-lag-001"
 title = "Point-in-Time Information Transmission Between Nasdaq Futures and QQQ"
-status = "baseline_code_frozen_no_empirical_model_results"
+status = "baseline_and_evaluation_code_frozen_no_empirical_results"
 timezone = "America/New_York"
 
 [universe]
@@ -58,6 +58,7 @@ primary_loss = "squared_error"
 secondary_losses = ["absolute_error", "directional_accuracy"]
 report_incremental_oos_r_squared = true
 paired_loss_test = "diebold_mariano_hac"
+hac_max_lag_minutes = 5
 
 [inference]
 primary_test = "granger_style_nested_forecast_comparison"
@@ -77,4 +78,4 @@ single_holdout_evaluation_only = true
 [interpretation]
 alpha_claim_allowed = false
 trading_strategy_claim_allowed = false
-reason = "The leakage-safe baseline implementation is frozen before the holdout boundary; no empirical model, loss, prediction, or holdout result is reported."
+reason = "The leakage-safe baseline and prespecified evaluation implementation are frozen before the holdout boundary; no empirical model, loss, prediction, or holdout result is reported."
