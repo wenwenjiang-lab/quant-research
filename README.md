@@ -175,8 +175,12 @@ The non-redistributive coverage audit is in
 [`reports/cross_asset_data_quality.md`](reports/cross_asset_data_quality.md).
 The leakage-safe development-panel audit is in
 [`reports/cross_asset_development_panel.md`](reports/cross_asset_development_panel.md).
-Licensed observations remain local and no cross-asset model, prediction, loss,
-holdout result, or Alpha claim has been produced.
+Development results are reported in
+[`reports/cross_asset_development_results.md`](reports/cross_asset_development_results.md).
+Lagged MNQ returns improve one-minute QQQ forecasts in the development sample,
+but the improvement disappears when the one-minute lag is removed. This is
+evidence of rapid information transmission, not validated Alpha or a trading
+strategy. Licensed observations remain local and the final holdout is sealed.
 
 ## Disclaimer
 

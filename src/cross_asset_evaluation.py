@@ -81,12 +81,34 @@ def confirmation_gate(
     minimum_oos_r_squared: float = 0.0,
     maximum_p_value: float = 0.05,
     minimum_positive_fraction: float = 0.60,
+    reverse_direction_reported: bool = False,
+    latency_sensitivity_reported: bool = False,
+    protocol_and_code_frozen: bool = False,
 ) -> dict[str, bool]:
     """Apply the frozen development gate without accessing a holdout."""
     decisions = {
         "positive_oos_r_squared": summary["incremental_oos_r_squared"] > minimum_oos_r_squared,
         "significant_paired_loss": summary["paired_loss_p_value"] < maximum_p_value,
         "stable_across_folds": summary["positive_improvement_fraction"] > minimum_positive_fraction,
+        "reverse_direction_reported": reverse_direction_reported,
+        "latency_sensitivity_reported": latency_sensitivity_reported,
+        "protocol_and_code_frozen": protocol_and_code_frozen,
     }
     decisions["gate_passed"] = all(decisions.values())
     return decisions
+
+
+def session_clustered_loss_test(
+    loss_panel: pd.DataFrame, *, session_hac_max_lag: int = 5
+) -> dict[str, float]:
+    """Run a sensitivity test on session-mean paired loss improvements."""
+    required = {"session_date", "loss_improvement"}
+    missing = sorted(required.difference(loss_panel.columns))
+    if missing:
+        raise ValueError(f"Missing required columns: {', '.join(missing)}")
+    session_means = loss_panel.groupby("session_date", sort=True)[
+        "loss_improvement"
+    ].mean()
+    result = hac_mean_test(session_means, max_lag=session_hac_max_lag)
+    result["sessions"] = result.pop("n")
+    return result
