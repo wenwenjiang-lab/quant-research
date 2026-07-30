@@ -228,6 +228,7 @@ data/processed/*
 !data/processed/.gitkeep
 figures/*
 !figures/.gitkeep
+!figures/*.svg
 reports/*
 !reports/.gitkeep
 !reports/*.md

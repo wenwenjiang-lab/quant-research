@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430" role="img" aria-labelledby="title desc">
+  <title id="title">Opening Range candidate QLIKE improvement by walk-forward fold</title>
+  <desc id="desc">Three of twelve folds improve and nine worsen. Positive bars favor the candidate; negative bars favor the pre-open baseline.</desc>
+  <rect width="900" height="430" fill="#ffffff"/>
+  <text x="70" y="38" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="#172033">Walk-forward QLIKE improvement by fold</text>
+  <text x="70" y="64" font-family="Arial, sans-serif" font-size="13" fill="#526078">Positive favors Opening Range candidate; negative favors pre-open baseline</text>
+  <line x1="70" y1="185" x2="850" y2="185" stroke="#667085" stroke-width="1.5"/>
+  <line x1="70" y1="90" x2="70" y2="350" stroke="#98a2b3"/>
+  <line x1="70" y1="350" x2="850" y2="350" stroke="#98a2b3"/>
+  <text x="24" y="101" font-family="Arial" font-size="12" fill="#667085">+0.008</text>
+  <text x="34" y="189" font-family="Arial" font-size="12" fill="#667085">0</text>
+  <text x="22" y="345" font-family="Arial" font-size="12" fill="#667085">−0.014</text>
+  <g fill="#2e7d6b">
+    <rect x="91" y="98" width="42" height="87"/><rect x="154" y="175" width="42" height="10"/><rect x="217" y="160" width="42" height="25"/>
+  </g>
+  <g fill="#b54747">
+    <rect x="280" y="185" width="42" height="2"/><rect x="343" y="185" width="42" height="100"/><rect x="406" y="185" width="42" height="139"/>
+    <rect x="469" y="185" width="42" height="171"/><rect x="532" y="185" width="42" height="66"/><rect x="595" y="185" width="42" height="41"/>
+    <rect x="658" y="185" width="42" height="23"/><rect x="721" y="185" width="42" height="62"/><rect x="784" y="185" width="42" height="69"/>
+  </g>
+  <g font-family="Arial" font-size="12" fill="#344054" text-anchor="middle">
+    <text x="112" y="374">1</text><text x="175" y="374">2</text><text x="238" y="374">3</text><text x="301" y="374">4</text>
+    <text x="364" y="374">5</text><text x="427" y="374">6</text><text x="490" y="374">7</text><text x="553" y="374">8</text>
+    <text x="616" y="374">9</text><text x="679" y="374">10</text><text x="742" y="374">11</text><text x="805" y="374">12</text>
+    <text x="460" y="407" font-size="13">Walk-forward fold</text>
+  </g>
+  <text x="835" y="105" font-family="Arial" font-size="12" text-anchor="end" fill="#2e7d6b">3 improved</text>
+  <text x="835" y="126" font-family="Arial" font-size="12" text-anchor="end" fill="#b54747">9 worsened</text>
+</svg>

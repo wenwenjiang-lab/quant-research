@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360" role="img" aria-labelledby="title desc">
+  <title id="title">Out-of-sample baseline and Opening Range model comparison</title>
+  <desc id="desc">The Opening Range candidate has higher RMSE and QLIKE and negative relative out-of-sample R squared.</desc>
+  <rect width="900" height="360" fill="#ffffff"/>
+  <text x="60" y="38" font-family="Arial" font-size="22" font-weight="600" fill="#172033">Development-period out-of-sample comparison</text>
+  <g font-family="Arial" text-anchor="middle">
+    <text x="230" y="82" font-size="15" fill="#344054">RMSE</text>
+    <rect x="125" y="125" width="85" height="160" fill="#4c78a8"/><rect x="250" y="121" width="85" height="164" fill="#c65d57"/>
+    <text x="167" y="115" font-size="14" fill="#172033">65.03</text><text x="292" y="111" font-size="14" fill="#172033">66.32</text>
+    <text x="167" y="310" font-size="12" fill="#526078">Baseline</text><text x="292" y="310" font-size="12" fill="#526078">+ Opening Range</text>
+    <text x="660" y="82" font-size="15" fill="#344054">Mean QLIKE</text>
+    <rect x="555" y="130" width="85" height="155" fill="#4c78a8"/><rect x="680" y="123" width="85" height="162" fill="#c65d57"/>
+    <text x="597" y="120" font-size="14" fill="#172033">0.07563</text><text x="722" y="113" font-size="14" fill="#172033">0.07927</text>
+    <text x="597" y="310" font-size="12" fill="#526078">Baseline</text><text x="722" y="310" font-size="12" fill="#526078">+ Opening Range</text>
+  </g>
+  <text x="450" y="345" font-family="Arial" font-size="13" text-anchor="middle" fill="#b54747">Candidate relative OOS R² = −0.0401 · confirmation gate not passed</text>
+</svg>

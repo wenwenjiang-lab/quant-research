@@ -30,5 +30,9 @@ is the auditable workflow: data governance, point-in-time features, leakage
 guards, dependence-robust inference, walk-forward comparison, and acceptance
 of a negative result.
 
+![Out-of-sample model comparison](../figures/model_comparison.svg)
+
+![Walk-forward QLIKE improvement](../figures/walk_forward_qlike.svg)
+
 Any nonlinear model, alternative target, or opening window is a new Phase III
 question requiring a new study identifier and validation plan.
