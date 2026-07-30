@@ -181,6 +181,9 @@ Lagged MNQ returns improve one-minute QQQ forecasts in the development sample,
 but the improvement disappears when the one-minute lag is removed. This is
 evidence of rapid information transmission, not validated Alpha or a trading
 strategy. Licensed observations remain local and the final holdout is sealed.
+The single-use holdout procedure is frozen in
+[`reports/cross_asset_holdout_execution.md`](reports/cross_asset_holdout_execution.md),
+but execution is not yet authorized.
 
 ## Disclaimer
 

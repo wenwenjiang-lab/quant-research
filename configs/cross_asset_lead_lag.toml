@@ -52,6 +52,8 @@ final_holdout_fraction = 0.20
 final_holdout_start = "2025-02-20"
 final_holdout_sessions = 358
 holdout_analysis_allowed = false
+holdout_execution_phrase_required = true
+holdout_execution_expected_sessions = 358
 
 [metrics]
 primary_loss = "squared_error"
