@@ -70,26 +70,34 @@ def build_intraday_forecast_rows(
     work = work.sort_values("timestamp")
     work["session_date"] = work["timestamp"].dt.date
     rows = []
-    for date, day in work.groupby("session_date", sort=True):
+    grouped_days = {date: day for date, day in work.groupby("session_date", sort=True)}
+    indexed = work.set_index("timestamp", drop=False)
+    previous_close_row = None
+    for date, day in grouped_days.items():
         date_ts = pd.Timestamp(date)
         if date_ts >= pd.Timestamp(holdout_start):
             continue
         clock = day["timestamp"].dt.time
         opening = day[(clock >= time(9, 30)) & (clock < time(10, 0))]
         target = day[(clock >= time(10, 0)) & (clock < time(16, 0))]
-        preopen = day[clock < time(9, 30)]
-        if len(opening) != 30 or len(target) != 360 or preopen.empty:
+        current_rth = day[(clock >= time(9, 30)) & (clock < time(16, 0))]
+        if len(opening) != 30 or len(target) != 360 or previous_close_row is None:
+            if not current_rth.empty:
+                previous_close_row = current_rth.iloc[-1]
             continue
-        prior = work[work["session_date"] < date]
-        if prior.empty:
+        overnight = indexed.loc[
+            previous_close_row["timestamp"] : opening.iloc[0]["timestamp"]
+        ].iloc[1:-1]
+        if overnight.empty:
+            previous_close_row = current_rth.iloc[-1]
             continue
-        prior_close = float(prior.iloc[-1]["close"])
+        prior_close = float(previous_close_row["close"])
         open_price = float(opening.iloc[0]["open"])
         or_end = float(opening.iloc[-1]["close"])
         rows.append({
             "session_date": date_ts,
-            "overnight_return_bps": (float(preopen.iloc[-1]["close"]) / prior_close - 1) * 10_000,
-            "overnight_range_bps": (float(preopen["high"].max()) - float(preopen["low"].min())) / prior_close * 10_000,
+            "overnight_return_bps": (float(overnight.iloc[-1]["close"]) / prior_close - 1) * 10_000,
+            "overnight_range_bps": (float(overnight["high"].max()) - float(overnight["low"].min())) / prior_close * 10_000,
             "opening_gap_bps": (open_price / prior_close - 1) * 10_000,
             "opening_range_width_bps": (float(opening["high"].max()) - float(opening["low"].min())) / open_price * 10_000,
             "opening_range_return_bps": (or_end / open_price - 1) * 10_000,
@@ -98,6 +106,7 @@ def build_intraday_forecast_rows(
             "feature_max_timestamp": opening["timestamp"].max(),
             "target_min_timestamp": target["timestamp"].min(),
         })
+        previous_close_row = current_rth.iloc[-1]
     result = pd.DataFrame(rows)
     if not result.empty and (result["feature_max_timestamp"].dt.time >= time(10, 0)).any():
         raise ValueError("Feature timestamp exceeds the 10:00 cutoff")

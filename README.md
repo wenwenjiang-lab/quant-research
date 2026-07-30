@@ -40,6 +40,8 @@ development-only model report is in
 [`reports/development_analysis.md`](reports/development_analysis.md). The
 Phase II forecasting protocol is in
 [`reports/phase2_protocol.md`](reports/phase2_protocol.md). The
+development-only feature audit is in
+[`reports/phase2_data_quality.md`](reports/phase2_data_quality.md). The
 machine-readable draft specification is in
 [`configs/opening_range.toml`](configs/opening_range.toml).
 
