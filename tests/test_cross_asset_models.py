@@ -63,3 +63,19 @@ def test_squared_loss_panel_is_observation_aligned():
     assert losses["restricted_loss"].tolist() == [1.0, 0.25]
     assert losses["unrestricted_loss"].tolist() == [0.25, 0.0]
     assert losses["loss_improvement"].tolist() == [0.75, 0.25]
+
+
+def test_mixed_daylight_saving_offsets_from_csv_are_normalized():
+    panel = _panel(sessions=8)
+    panel["timestamp"] = panel["timestamp"].astype(str)
+    panel["session_date"] = panel["session_date"].astype(str)
+    panel.loc[panel.index[-3:], "timestamp"] = panel.loc[
+        panel.index[-3:], "timestamp"
+    ].str.replace("-05:00", "-04:00", regex=False)
+    predictions = expanding_nested_predictions(
+        panel, target="qqq_return", own_lag_features=["qqq_return_lag1"],
+        cross_lag_features=["futures_return_lag1"], holdout_start="2025-01-01",
+        minimum_training_sessions=4, test_block_sessions=2, embargo_sessions=1,
+    )
+    assert predictions["session_date"].nunique() == 3
+    assert str(predictions["session_date"].dtype).startswith("datetime64[ns,")

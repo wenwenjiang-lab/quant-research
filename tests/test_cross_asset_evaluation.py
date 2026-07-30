@@ -5,6 +5,7 @@ import pytest
 from src.cross_asset_evaluation import (
     confirmation_gate,
     hac_mean_test,
+    session_clustered_loss_test,
     summarize_nested_forecasts,
 )
 
@@ -41,9 +42,35 @@ def test_confirmation_gate_requires_every_registered_condition():
         "paired_loss_p_value": 0.01,
         "positive_improvement_fraction": 0.75,
     }
-    assert confirmation_gate(summary)["gate_passed"] is True
+    complete = dict(
+        reverse_direction_reported=True,
+        latency_sensitivity_reported=True,
+        protocol_and_code_frozen=True,
+    )
+    assert confirmation_gate(summary, **complete)["gate_passed"] is True
     summary["paired_loss_p_value"] = 0.20
-    assert confirmation_gate(summary)["gate_passed"] is False
+    assert confirmation_gate(summary, **complete)["gate_passed"] is False
+
+
+def test_confirmation_gate_stays_closed_until_required_reports_exist():
+    summary = {
+        "incremental_oos_r_squared": 0.01,
+        "paired_loss_p_value": 0.01,
+        "positive_improvement_fraction": 0.75,
+    }
+    result = confirmation_gate(summary)
+    assert result["gate_passed"] is False
+    assert result["latency_sensitivity_reported"] is False
+
+
+def test_session_clustered_test_aggregates_minutes_before_inference():
+    panel = pd.DataFrame({
+        "session_date": np.repeat(pd.date_range("2024-01-01", periods=8), 3),
+        "loss_improvement": np.tile([0.5, 1.0, 1.5], 8),
+    })
+    result = session_clustered_loss_test(panel, session_hac_max_lag=1)
+    assert result["mean"] == pytest.approx(1.0)
+    assert result["sessions"] == 8
 
 
 def test_summary_rejects_nonpositive_restricted_loss():

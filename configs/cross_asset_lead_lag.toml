@@ -1,7 +1,7 @@
 [study]
 study_id = "nq-qqq-lead-lag-001"
 title = "Point-in-Time Information Transmission Between Nasdaq Futures and QQQ"
-status = "baseline_and_evaluation_code_frozen_no_empirical_results"
+status = "development_gate_passed_holdout_sealed"
 timezone = "America/New_York"
 
 [universe]
@@ -78,4 +78,4 @@ single_holdout_evaluation_only = true
 [interpretation]
 alpha_claim_allowed = false
 trading_strategy_claim_allowed = false
-reason = "The leakage-safe baseline and prespecified evaluation implementation are frozen before the holdout boundary; no empirical model, loss, prediction, or holdout result is reported."
+reason = "Development evidence supports one-minute information transmission from MNQ to QQQ, but the improvement disappears at longer latency; the final holdout remains sealed and no Alpha or trading-strategy claim is allowed."

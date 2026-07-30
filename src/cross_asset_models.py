@@ -55,8 +55,19 @@ def expanding_nested_predictions(
 
     columns = ["timestamp", "session_date", target, *own_features, *cross_features]
     clean = panel.loc[:, columns].copy()
-    clean["timestamp"] = pd.to_datetime(clean["timestamp"], errors="coerce")
-    clean["session_date"] = pd.to_datetime(clean["session_date"], errors="coerce")
+    clean["timestamp"] = pd.to_datetime(
+        clean["timestamp"], errors="coerce", utc=True
+    ).dt.tz_convert("America/New_York")
+    if clean["session_date"].dtype == object:
+        # CSV exports spanning daylight-saving transitions contain mixed UTC
+        # offsets. Parse the frozen local calendar label instead of allowing
+        # pandas to leave the column as Python objects.
+        session_dates = pd.to_datetime(
+            clean["session_date"].astype(str).str.slice(0, 10), errors="coerce"
+        ).dt.tz_localize("America/New_York")
+    else:
+        session_dates = pd.to_datetime(clean["session_date"], errors="coerce")
+    clean["session_date"] = session_dates
     if clean[["timestamp", "session_date"]].isna().any().any():
         raise ValueError("Timestamps and session dates must be valid")
     if not clean["timestamp"].is_monotonic_increasing:
