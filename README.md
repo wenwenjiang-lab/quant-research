@@ -4,11 +4,11 @@
 
 This repository applies a scientific research workflow to systematic market behavior across liquid futures and ETFs. The current study uses Micro E-mini Nasdaq-100 futures (MNQ) as the first test case; the methods are designed to extend to NQ, ES, SPY, QQQ, and other liquid instruments.
 
-The portfolio is aimed at early-career opportunities in quantitative research, quantitative trading, and markets analytics. It emphasizes reproducible evidence rather than discretionary trade ideas or unsupported performance claims.
+The portfolio emphasizes reproducible evidence rather than discretionary trade ideas or unsupported performance claims.
 
-## Recruiter snapshot
+## Research capabilities
 
-| Capability | Evidence in this repository |
+| Capability | Evidence |
 |---|---|
 | Hypothesis-driven research | Prespecified questions, null/alternative hypotheses, variables, tests, and limitations |
 | Python research engineering | Validated data loading, reusable feature calculations, typed functions, and unit tests |
