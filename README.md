@@ -36,13 +36,13 @@ the direction or magnitude of the remainder of the same trading session?
 
 **Primary unit of analysis.** One regular trading session.
 
-**Current state.** The protocol, data contract, quality gates, feature pipeline,
-statistical utilities, and chronological validation tools are implemented. A
-licensed local Databento sample covering May 2019 through July 2026 is undergoing
-session, calendar, and continuous-contract audits. Development-only estimates
-show a positive but regime-sensitive magnitude association that attenuates after
-controlling for lagged volatility. Influence diagnostics remain unresolved; the
-final holdout has not been accessed and no confirmatory inference is reported.
+**Research decision.** Phase I finds a positive but regime-sensitive descriptive
+association that attenuates after controlling for lagged volatility. Phase II
+then asks whether Opening Range features improve a pre-open volatility forecast.
+They do not: the candidate has relative out-of-sample R² of -0.0401, worse QLIKE,
+and improves only 3 of 12 walk-forward folds. The registered confirmation gate
+is not passed, so the final holdout remains sealed. This is a completed negative
+decision for the registered question, not validated alpha or a trading strategy.
 
 The full hypotheses and limitations are in
 [`research_questions.md`](research_questions.md). The methodology is in
@@ -58,7 +58,9 @@ development-only feature audit is in
 development-period forecasting decision is documented in
 [`reports/phase2_development_results.md`](reports/phase2_development_results.md). The
 machine-readable draft specification is in
-[`configs/opening_range.toml`](configs/opening_range.toml).
+[`configs/opening_range.toml`](configs/opening_range.toml), and the Phase II
+specification is in
+[`configs/phase2_forecasting.toml`](configs/phase2_forecasting.toml).
 
 ## Research architecture
 
@@ -83,7 +85,7 @@ checks—including robust slopes, influence removal, nonlinear form, trailing
 volatility regimes, and contract-roll sensitivity
         |
         v
-Candidate signal only if statistical and economic evidence survives
+Registered gate fails -> stop research question and keep holdout sealed
 ```
 
 ## Implemented research controls
@@ -97,6 +99,8 @@ Candidate signal only if statistical and economic evidence survives
 | Multiple comparisons | Holm family-wise p-value adjustment |
 | Overstated conclusions | Minimum-sample gate and explicit in-progress status |
 | Restricted vendor data | Raw and processed observations excluded from version control |
+| Post-hoc model search | Frozen confirmation gate and formal stop decision |
+| Irreproducible licensed sample | Deterministic synthetic end-to-end demonstration |
 
 ## Repository structure
 
@@ -104,7 +108,8 @@ Candidate signal only if statistical and economic evidence survives
 quant-research/
 ├── .github/workflows/          # Continuous test validation
 ├── configs/
-│   └── opening_range.toml      # Draft machine-readable study specification
+│   ├── opening_range.toml      # Phase I machine-readable specification
+│   └── phase2_forecasting.toml # Forecasting protocol and confirmation gate
 ├── data/
 │   ├── README.md               # Provenance, schema and limitations
 │   ├── raw/                    # Licensed source data; never committed
@@ -120,8 +125,11 @@ quant-research/
 │   ├── robustness_analysis.py  # Guarded development-only sensitivities
 │   ├── forecast_features.py    # Point-in-time features and leakage audit
 │   ├── forecast_validation.py  # Expanding-window folds and holdout guard
+│   ├── forecast_models.py      # Baselines, losses and paired inference
+│   ├── synthetic_demo.py       # Data-free end-to-end software demonstration
 │   └── validation.py           # Leakage-resistant time-series splits
 ├── reports/
+│   ├── executive_summary.md    # Recruiter-facing evidence and decision
 │   └── research_methodology.md # Prespecified research standards
 ├── tests/                      # Deterministic synthetic-data tests
 ├── PORTFOLIO_ROADMAP.md
@@ -151,15 +159,13 @@ an empirical result.
 - Preserve negative and inconclusive findings.
 - Do not describe a backtest as a production strategy.
 
-## Roadmap
+## Next independent research
 
-1. Complete exchange-calendar, missing-bar, and contract-roll audits.
-2. Expand the sample to satisfy the protocol's minimum-session requirement.
-3. Freeze the confirmatory specification and final holdout boundary.
-4. Produce descriptive statistics without tuning on the holdout.
-5. Run prespecified inference and robustness checks.
-6. Evaluate execution costs only if a relationship survives validation.
-7. Test external validity in NQ/QQQ and then ES/SPY.
+The registered MNQ question is closed before holdout evaluation. Any nonlinear
+model, alternative target, or different opening window must use a new study ID
+and validation plan. The next portfolio study will examine cross-asset
+information transmission between Nasdaq futures and QQQ, with synchronized
+timestamps, lead-lag controls, and a separately protected evaluation sample.
 
 ## Disclaimer
 
