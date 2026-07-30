@@ -25,6 +25,8 @@ development session as an embargo.
 | Restricted directional accuracy | 48.64% |
 | Unrestricted directional accuracy | 50.27% |
 
+![MNQ–QQQ final holdout evidence](../figures/cross_asset_holdout_summary.svg)
+
 The unrestricted model has lower squared forecast loss under both registered
 minute-level and session-aggregated inference. The frozen confirmation rule—
 positive incremental OOS R² and paired-loss p-value below 0.05—is satisfied.

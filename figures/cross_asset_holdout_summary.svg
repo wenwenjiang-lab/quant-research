@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="570" viewBox="0 0 1000 570" role="img" aria-labelledby="title desc">
+  <title id="title">MNQ–QQQ final holdout evidence summary</title>
+  <desc id="desc">The final holdout has positive but small incremental out-of-sample R squared, paired-loss p-values below 0.05, and directional accuracy near 50 percent.</desc>
+  <rect width="1000" height="570" fill="#ffffff"/>
+  <text x="55" y="43" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#172033">MNQ–QQQ information transmission · final holdout</text>
+  <text x="55" y="70" font-family="Arial, sans-serif" font-size="14" fill="#667085">358 sessions · 137,472 synchronized one-minute observations · evaluated exactly once</text>
+
+  <g font-family="Arial, sans-serif">
+    <rect x="45" y="98" width="286" height="365" rx="8" fill="#f8fafc" stroke="#d0d5dd"/>
+    <text x="68" y="130" font-size="17" font-weight="700" fill="#344054">Incremental OOS R²</text>
+    <text x="68" y="153" font-size="12" fill="#667085">Unrestricted model versus QQQ-only baseline</text>
+    <line x1="82" y1="393" x2="294" y2="393" stroke="#98a2b3"/>
+    <rect x="103" y="210" width="62" height="183" fill="#4c78a8"/>
+    <rect x="214" y="324" width="62" height="69" fill="#2f855a"/>
+    <text x="134" y="198" text-anchor="middle" font-size="16" font-weight="700" fill="#172033">0.5029%</text>
+    <text x="245" y="312" text-anchor="middle" font-size="16" font-weight="700" fill="#172033">0.1888%</text>
+    <text x="134" y="420" text-anchor="middle" font-size="13" fill="#526078">Development</text>
+    <text x="245" y="420" text-anchor="middle" font-size="13" fill="#526078">Final holdout</text>
+    <text x="188" y="449" text-anchor="middle" font-size="12" fill="#667085">Positive, with out-of-sample attenuation</text>
+
+    <rect x="357" y="98" width="286" height="365" rx="8" fill="#f8fafc" stroke="#d0d5dd"/>
+    <text x="380" y="130" font-size="17" font-weight="700" fill="#344054">Registered inference</text>
+    <text x="380" y="153" font-size="12" fill="#667085">Paired squared-loss comparison</text>
+    <line x1="393" y1="215" x2="607" y2="215" stroke="#b54747" stroke-width="2" stroke-dasharray="5 5"/>
+    <text x="607" y="206" text-anchor="end" font-size="11" fill="#b54747">α = 0.05</text>
+    <line x1="393" y1="393" x2="607" y2="393" stroke="#98a2b3"/>
+    <rect x="418" y="328" width="62" height="65" fill="#2f855a"/>
+    <rect x="526" y="239" width="62" height="154" fill="#55a868"/>
+    <text x="449" y="316" text-anchor="middle" font-size="16" font-weight="700" fill="#172033">0.0182</text>
+    <text x="557" y="227" text-anchor="middle" font-size="16" font-weight="700" fill="#172033">0.0432</text>
+    <text x="449" y="401" text-anchor="middle" font-size="13" fill="#526078">HAC</text>
+    <text x="557" y="401" text-anchor="middle" font-size="13" fill="#526078">Session-level</text>
+    <text x="500" y="449" text-anchor="middle" font-size="12" fill="#667085">Both registered p-values below 0.05</text>
+
+    <rect x="669" y="98" width="286" height="365" rx="8" fill="#f8fafc" stroke="#d0d5dd"/>
+    <text x="692" y="130" font-size="17" font-weight="700" fill="#344054">Directional accuracy</text>
+    <text x="692" y="153" font-size="12" fill="#667085">Descriptive metric, not a trading result</text>
+    <line x1="705" y1="277" x2="919" y2="277" stroke="#98a2b3" stroke-width="2" stroke-dasharray="5 5"/>
+    <text x="919" y="269" text-anchor="end" font-size="11" fill="#667085">50% reference</text>
+    <rect x="730" y="303" width="62" height="90" fill="#98a2b3"/>
+    <rect x="838" y="272" width="62" height="121" fill="#4c78a8"/>
+    <text x="761" y="291" text-anchor="middle" font-size="16" font-weight="700" fill="#172033">48.64%</text>
+    <text x="869" y="260" text-anchor="middle" font-size="16" font-weight="700" fill="#172033">50.27%</text>
+    <text x="761" y="420" text-anchor="middle" font-size="13" fill="#526078">QQQ-only</text>
+    <text x="869" y="420" text-anchor="middle" font-size="13" fill="#526078">+ MNQ lags</text>
+    <text x="812" y="449" text-anchor="middle" font-size="12" fill="#667085">Economically modest and near chance</text>
+  </g>
+
+  <rect x="45" y="487" width="910" height="53" rx="6" fill="#fff7ed" stroke="#fed7aa"/>
+  <text x="500" y="509" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#9a3412">Statistical confirmation ≠ validated Alpha</text>
+  <text x="500" y="530" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#7c2d12">No spread, fees, slippage, fills, queue position, impact, or capacity model is included.</text>
+</svg>

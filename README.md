@@ -197,6 +197,8 @@ and the final decision is reported in
 [`reports/cross_asset_final_results.md`](reports/cross_asset_final_results.md).
 The holdout is now permanently closed to retuning or repeat evaluation.
 
+![MNQ–QQQ final holdout evidence](figures/cross_asset_holdout_summary.svg)
+
 ## Disclaimer
 
 Research and educational use only. Nothing in this repository is investment
