@@ -173,7 +173,10 @@ machine-readable specification in
 [`configs/cross_asset_lead_lag.toml`](configs/cross_asset_lead_lag.toml).
 The non-redistributive coverage audit is in
 [`reports/cross_asset_data_quality.md`](reports/cross_asset_data_quality.md).
-No QQQ observations or empirical cross-asset model results have been added.
+The leakage-safe development-panel audit is in
+[`reports/cross_asset_development_panel.md`](reports/cross_asset_development_panel.md).
+Licensed observations remain local and no cross-asset model, prediction, loss,
+holdout result, or Alpha claim has been produced.
 
 ## Disclaimer
 
