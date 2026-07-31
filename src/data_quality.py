@@ -1,8 +1,10 @@
 """Deterministic data-quality checks for intraday OHLCV research data."""
 
 from dataclasses import dataclass
+from datetime import timedelta
 
 import pandas as pd
+from pandas.tseries.frequencies import to_offset
 
 
 @dataclass(frozen=True)
@@ -67,7 +69,10 @@ def audit_intraday_bars(
     local_timestamps = timestamps.dt.tz_convert(timezone)
     ordered = pd.DataFrame({"timestamp": local_timestamps}).sort_values("timestamp")
     ordered["session_date"] = ordered["timestamp"].dt.date
-    expected_delta = pd.to_timedelta(expected_frequency)
+    offset = to_offset(expected_frequency)
+    if offset.nanos % 1_000:
+        raise ValueError("Expected frequency must resolve to whole microseconds")
+    expected_delta = timedelta(microseconds=offset.nanos // 1_000)
     deltas = ordered.groupby("session_date")["timestamp"].diff()
     unexpected_intervals = int(((deltas.notna()) & (deltas != expected_delta)).sum())
 
