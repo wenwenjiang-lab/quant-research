@@ -1,6 +1,11 @@
 # Research Questions and Study Design
 
-> **Status: in progress.** This is a proposed design, not a completed analysis.
+> **Design status: archived preregistration. Study status: complete.** This
+> document preserves the questions and hypotheses defined before analysis.
+> Phase I reported a descriptive association; the registered Phase II
+> forecasting gate later failed in development, so its final holdout remains
+> sealed. See the [`research decision`](reports/research_decision.md) and
+> [`portfolio summary`](reports/executive_summary.md).
 
 ## Main research question
 

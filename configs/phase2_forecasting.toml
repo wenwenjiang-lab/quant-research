@@ -1,7 +1,7 @@
 [study]
 study_id = "mnq-opening-range-002"
 title = "Incremental Out-of-Sample Intraday Volatility Forecasting"
-status = "preregistered_development_only"
+status = "development_gate_failed_holdout_sealed_study_complete"
 decision_time = "10:00"
 timezone = "America/New_York"
 
@@ -55,4 +55,4 @@ single_holdout_evaluation_only = true
 
 [interpretation]
 alpha_claim_allowed = false
-reason = "Phase II protocol is frozen only after implementation review; final holdout remains sealed."
+reason = "The frozen Phase II candidate failed its development confirmation gate. The study stopped, the final holdout remains sealed, and no Alpha claim is allowed."

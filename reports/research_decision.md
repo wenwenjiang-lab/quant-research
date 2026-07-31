@@ -1,5 +1,8 @@
 # Research Decision Record
 
+> **Status: final development-stage decision.** This record closes the
+> registered forecasting question without opening the final holdout.
+
 - **Study:** `mnq-opening-range-002`
 - **Decision:** Stop before final-holdout evaluation.
 - **Reason:** Negative relative OOS R², worse QLIKE, unfavorable paired loss,
