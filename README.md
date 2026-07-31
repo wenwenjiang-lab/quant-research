@@ -59,7 +59,7 @@ development-only feature audit is in
 [`reports/phase2_data_quality.md`](reports/phase2_data_quality.md). The
 development-period forecasting decision is documented in
 [`reports/phase2_development_results.md`](reports/phase2_development_results.md). The
-machine-readable draft specification is in
+Phase I exploratory specification is in
 [`configs/opening_range.toml`](configs/opening_range.toml), and the Phase II
 specification is in
 [`configs/phase2_forecasting.toml`](configs/phase2_forecasting.toml).
@@ -177,7 +177,7 @@ This independent study examines cross-asset information transmission between
 Nasdaq futures and QQQ with synchronized timestamps, lead-lag controls, and a
 separately protected evaluation sample.
 
-The draft protocol is now versioned in
+The frozen protocol is versioned in
 [`reports/cross_asset_protocol.md`](reports/cross_asset_protocol.md), with its
 machine-readable specification in
 [`configs/cross_asset_lead_lag.toml`](configs/cross_asset_lead_lag.toml).
