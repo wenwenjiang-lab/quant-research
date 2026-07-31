@@ -7,6 +7,7 @@ contain market observations, a fitted signal, or an empirical result.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import date
 
 import numpy as np
 import pandas as pd
@@ -30,6 +31,66 @@ class ExecutionCosts:
         )
         if not all(np.isfinite(value) and value >= 0 for value in values):
             raise ValueError("Execution-cost assumptions must be finite and nonnegative")
+
+
+@dataclass(frozen=True)
+class SampleEligibility:
+    """Date-only audit result for a prospective protected sample."""
+
+    eligible: bool
+    parent_sample_end: date
+    first_new_session: date | None
+    last_new_session: date | None
+    new_session_count: int
+    minimum_required_sessions: int
+    reason: str
+
+
+def assess_new_sample_eligibility(
+    sessions: pd.Series | pd.Index,
+    *,
+    parent_sample_end: str | date | pd.Timestamp,
+    minimum_required_sessions: int,
+) -> SampleEligibility:
+    """Audit whether dates form a genuinely new protected sample.
+
+    Only session labels are examined; prices, forecasts, returns, and outcomes
+    are never accessed. Sessions on or before ``parent_sample_end`` are treated
+    as previously exposed and cannot qualify for Study 03.
+    """
+    if not isinstance(minimum_required_sessions, int) or minimum_required_sessions < 1:
+        raise ValueError("minimum_required_sessions must be a positive integer")
+
+    cutoff = pd.Timestamp(parent_sample_end)
+    if pd.isna(cutoff):
+        raise ValueError("parent_sample_end must be a valid date")
+    if cutoff.tzinfo is not None:
+        cutoff = cutoff.tz_localize(None)
+    cutoff = cutoff.normalize()
+
+    parsed = pd.to_datetime(pd.Index(sessions), errors="coerce")
+    if parsed.isna().any():
+        raise ValueError("Session labels must all be valid dates")
+    if parsed.tz is not None:
+        parsed = parsed.tz_localize(None)
+    unique_sessions = pd.DatetimeIndex(parsed).normalize().unique().sort_values()
+    new_sessions = unique_sessions[unique_sessions > cutoff]
+    count = len(new_sessions)
+    eligible = count >= minimum_required_sessions
+    reason = (
+        "new protected sample meets the prespecified session minimum"
+        if eligible
+        else "insufficient sessions strictly after the completed parent sample"
+    )
+    return SampleEligibility(
+        eligible=eligible,
+        parent_sample_end=cutoff.date(),
+        first_new_session=new_sessions[0].date() if count else None,
+        last_new_session=new_sessions[-1].date() if count else None,
+        new_session_count=count,
+        minimum_required_sessions=minimum_required_sessions,
+        reason=reason,
+    )
 
 
 def _aligned_frame(
