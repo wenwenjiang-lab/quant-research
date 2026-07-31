@@ -8,14 +8,14 @@ strategy.
 from __future__ import annotations
 
 from collections.abc import Sequence
-from datetime import time
+from datetime import time, timedelta
 
 import pandas as pd
 
 
 REQUIRED_COLUMNS = {"timestamp", "close"}
 NEW_YORK = "America/New_York"
-ONE_MINUTE = pd.Timedelta(minutes=1)
+ONE_MINUTE = timedelta(minutes=1)
 
 
 def validate_price_bars(bars: pd.DataFrame, *, asset: str) -> pd.DataFrame:

@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 import numpy as np
 import pandas as pd
 import pytest
@@ -13,7 +15,7 @@ def _panel(sessions=10, rows_per_session=3):
             own = session_number + minute / 10
             cross = (session_number % 3) - minute / 20
             rows.append({
-                "timestamp": date + pd.Timedelta(f"{570 + minute}min"),
+                "timestamp": date + timedelta(minutes=570 + minute),
                 "session_date": date.normalize(),
                 "qqq_return": 0.2 + 0.5 * own + 0.3 * cross,
                 "qqq_return_lag1": own,

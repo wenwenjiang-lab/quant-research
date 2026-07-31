@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 import pandas as pd
 import pytest
 
@@ -104,10 +106,10 @@ def test_cross_asset_predictors_are_strictly_lagged():
     for _, row in panel.iterrows():
         timestamp = pd.Timestamp(row["timestamp"])
         assert row["futures_return_lag1"] == pytest.approx(
-            full_returns.loc[timestamp - pd.Timedelta(minutes=1)]
+            full_returns.loc[timestamp - timedelta(minutes=1)]
         )
         assert row["futures_return_lag2"] == pytest.approx(
-            full_returns.loc[timestamp - pd.Timedelta(minutes=2)]
+            full_returns.loc[timestamp - timedelta(minutes=2)]
         )
 
 
