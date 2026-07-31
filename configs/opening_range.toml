@@ -1,6 +1,6 @@
 [study]
 study_id = "mnq-opening-range-001"
-status = "draft"
+status = "phase1_exploratory_closed_superseded_by_phase2"
 instrument = "MNQ"
 timezone = "America/New_York"
 bar_frequency = "1min"
@@ -79,4 +79,4 @@ expected_post_opening_bars = 360
 
 [interpretation]
 alpha_claim_allowed = false
-reason = "Protocol is not frozen and the final holdout has not been analyzed."
+reason = "Phase I was exploratory and was not promoted to confirmation. The separately frozen Phase II forecasting protocol failed its development gate; the final holdout remains sealed."
