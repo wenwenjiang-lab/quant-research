@@ -101,7 +101,7 @@ def audit_session_csv(
     *,
     session_column: str = "session_date",
     parent_sample_end: str | date | pd.Timestamp = "2026-07-29",
-    minimum_required_sessions: int = 274,
+    minimum_required_sessions: int = 343,
 ) -> SampleEligibility:
     """Audit a local panel while loading only its session-date column."""
     source = Path(path)

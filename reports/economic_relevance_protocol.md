@@ -21,10 +21,13 @@ only distinct sessions strictly after that date. The currently audited common
 dataset contains zero such sessions, so empirical development remains locked.
 This is a sample-availability statement, not a market or performance result.
 
-Before development begins, at least 274 new sessions are required: 252 initial
-training sessions, a one-session embargo, and one 21-session test block. The
-date-only gate in `src/economic_relevance.py` enforces this boundary without
-reading prices, forecasts, returns, or outcomes.
+Before development begins, at least **343 new sessions** are required. This is
+the smallest total sample that leaves 274 development sessions (252 initial
+training sessions, a one-session embargo, and one 21-session test block) after
+reserving the newest 20%, or 69 sessions, as the final holdout. The date-only
+gate in `src/economic_relevance.py` enforces this boundary without reading
+prices, forecasts, returns, or outcomes. The calculation and chronological
+split construction are implemented in `src/economic_validation.py`.
 
 ## Primary estimand
 

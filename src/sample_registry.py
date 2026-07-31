@@ -41,7 +41,7 @@ def register_sample_snapshot(
     *,
     label: str,
     parent_sample_end: str = "2026-07-29",
-    minimum_required_sessions: int = 274,
+    minimum_required_sessions: int = 343,
     recorded_at_utc: str | None = None,
 ) -> dict[str, Any]:
     """Append one immutable, date-only snapshot record.
