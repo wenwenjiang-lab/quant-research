@@ -1,4 +1,4 @@
-Concise two-study research overview# Quantitative Market Research
+# Quantitative Market Research
 
 [![Tests](https://github.com/wenwenjiang-lab/quant-research/actions/workflows/tests.yml/badge.svg)](https://github.com/wenwenjiang-lab/quant-research/actions/workflows/tests.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776AB.svg)](https://www.python.org/)
@@ -138,7 +138,7 @@ quant-research/
 │   ├── publication_integrity.py # Public links, figures and data-policy audit
 │   └── validation.py           # Leakage-resistant time-series splits
 ├── reports/
-│   ├── executive_summary.md    # Recruiter-facing two-study summary
+│   ├── executive_summary.md    # Concise two-study research overview
 │   ├── cross_asset_protocol.md # Registered information-transmission design
 │   ├── cross_asset_development_results.md # Development-only evidence
 │   ├── cross_asset_final_results.md # Single-use holdout decision
