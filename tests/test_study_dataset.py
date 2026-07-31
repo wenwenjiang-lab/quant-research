@@ -1,6 +1,6 @@
 """Tests for leakage-aware construction of the session research panel."""
 
-from datetime import time
+from datetime import time, timedelta
 
 import pandas as pd
 import pytest
@@ -71,7 +71,7 @@ def test_rejects_incomplete_opening_range() -> None:
 def test_screened_panel_reports_incomplete_sessions() -> None:
     complete = _session_bars()
     incomplete = _session_bars().iloc[1:].copy()
-    incomplete["timestamp"] = incomplete["timestamp"] + pd.Timedelta(days=1)
+    incomplete["timestamp"] = incomplete["timestamp"] + timedelta(days=1)
     bars = pd.concat([complete, incomplete], ignore_index=True)
     spec = OpeningRangeStudySpec(
         opening_start=time(9, 30),
