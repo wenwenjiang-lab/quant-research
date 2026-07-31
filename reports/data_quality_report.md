@@ -1,7 +1,11 @@
 # MNQ Data-Construction and Quality Report
 
-> **Status: in progress.** This report documents data construction only. It
-> contains no test of the research hypothesis and no claim of alpha.
+> **Status: frozen construction-audit snapshot.** This report documents the
+> data gates as they stood before the registered forecasting decision. It
+> contains no hypothesis result or Alpha claim. Later development-only feature
+> checks are in [`phase2_data_quality.md`](phase2_data_quality.md), and the
+> completed decision is in
+> [`phase2_development_results.md`](phase2_development_results.md).
 
 ## Source snapshot
 
@@ -74,7 +78,7 @@ return may be treated as an ordinary price move without a separate roll audit.
 The primary opening-range outcomes are intraday, but contract identifiers and
 roll dates still require verification before confirmatory analysis.
 
-## Remaining gates
+## Gates recorded at this audit stage
 
 - verify candidate shortened sessions against the exchange calendar;
 - resolve continuous-series instrument identifiers to raw contracts and audit
@@ -83,3 +87,7 @@ roll dates still require verification before confirmatory analysis.
 - publish exclusion counts for every analysis specification;
 - keep the final holdout untouched until the confirmatory specification is
   frozen.
+
+This list is preserved as historical research provenance, not as the current
+repository status. The later registered study stopped after its development
+gate failed, and the final holdout remains sealed with zero rows accessed.
