@@ -23,7 +23,7 @@ def main() -> int:
         default=Path("data/processed/study03_sample_registry.json"),
     )
     parser.add_argument("--parent-end", default="2026-07-29")
-    parser.add_argument("--minimum-sessions", type=int, default=274)
+    parser.add_argument("--minimum-sessions", type=int, default=343)
     args = parser.parse_args()
 
     record = register_sample_snapshot(

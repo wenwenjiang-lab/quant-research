@@ -26,7 +26,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--session-column", default="session_date")
     parser.add_argument("--parent-end", default="2026-07-29")
-    parser.add_argument("--minimum-sessions", type=int, default=274)
+    parser.add_argument("--minimum-sessions", type=int, default=343)
     return parser.parse_args()
 
 
