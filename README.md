@@ -219,6 +219,10 @@ explicitly unavailable for tuning or confirmation.
 
 See the [`prospective protocol`](reports/economic_relevance_protocol.md) and
 its [`machine-readable specification`](configs/economic_relevance.toml).
+The software-only execution and cost primitives are implemented in
+[`src/economic_relevance.py`](src/economic_relevance.py) and are validated
+entirely with deterministic synthetic fixtures. No Study 03 empirical result
+has been produced.
 
 ## Disclaimer
 
