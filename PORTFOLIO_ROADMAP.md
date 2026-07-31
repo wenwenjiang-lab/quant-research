@@ -39,7 +39,10 @@ made because execution costs and market microstructure are outside the study.
 The prospective design is now frozen in
 [`reports/economic_relevance_protocol.md`](reports/economic_relevance_protocol.md)
 and [`configs/economic_relevance.toml`](configs/economic_relevance.toml). The
-study has not started and no result is available.
+study has not started and no result is available. It requires 343 genuinely
+new sessions after the completed parent sample: 274 for chronological
+development and 69 for a final holdout that remains inaccessible during model
+development. Current readiness is 0/343.
 
 Any economic evaluation will be a new registered study, not a reinterpretation
 or rerun of the completed holdout. Before analysis it must specify:

@@ -118,7 +118,8 @@ quant-research/
 ├── configs/
 │   ├── opening_range.toml       # Phase I machine-readable specification
 │   ├── phase2_forecasting.toml  # Forecasting protocol and confirmation gate
-│   └── cross_asset_lead_lag.toml # Frozen MNQ–QQQ specification
+│   ├── cross_asset_lead_lag.toml # Frozen MNQ–QQQ specification
+│   └── economic_relevance.toml  # Prospective cost-aware protocol
 ├── data/
 │   ├── README.md               # Provenance, schema and limitations
 │   ├── raw/                    # Licensed source data; never committed
@@ -140,6 +141,10 @@ quant-research/
 │   ├── cross_asset_models.py   # Restricted and unrestricted baselines
 │   ├── cross_asset_evaluation.py # Walk-forward comparison and inference
 │   ├── cross_asset_holdout.py  # Single-use holdout enforcement
+│   ├── economic_relevance.py   # Point-in-time execution and cost model
+│   ├── economic_validation.py  # Prospective splits and untouched holdout
+│   ├── economic_evaluation.py  # Frozen net-performance decision metrics
+│   ├── sample_registry.py      # Immutable local sample-boundary records
 │   ├── publication_integrity.py # Public links, figures and data-policy audit
 │   └── validation.py           # Leakage-resistant time-series splits
 ├── reports/
@@ -147,6 +152,7 @@ quant-research/
 │   ├── cross_asset_protocol.md # Registered information-transmission design
 │   ├── cross_asset_development_results.md # Development-only evidence
 │   ├── cross_asset_final_results.md # Single-use holdout decision
+│   ├── economic_relevance_protocol.md # Preregistered Study 03 design
 │   └── research_methodology.md # Prespecified research standards
 ├── tests/                      # Deterministic synthetic-data tests
 ├── PORTFOLIO_ROADMAP.md
@@ -219,10 +225,16 @@ explicitly unavailable for tuning or confirmation.
 
 See the [`prospective protocol`](reports/economic_relevance_protocol.md) and
 its [`machine-readable specification`](configs/economic_relevance.toml).
-The software-only execution and cost primitives are implemented in
-[`src/economic_relevance.py`](src/economic_relevance.py) and are validated
-entirely with deterministic synthetic fixtures. No Study 03 empirical result
-has been produced.
+The minimum prospective sample is **343 sessions strictly after 2026-07-29**:
+274 development sessions and a separately reserved 69-session final holdout.
+The current readiness state is **0/343**, so empirical development is blocked.
+
+Software-only execution, validation, and evaluation primitives are implemented
+in [`src/economic_relevance.py`](src/economic_relevance.py),
+[`src/economic_validation.py`](src/economic_validation.py), and
+[`src/economic_evaluation.py`](src/economic_evaluation.py). They are validated
+entirely with deterministic synthetic fixtures. No Study 03 market outcome has
+been inspected and no empirical result has been produced.
 
 ## Disclaimer
 
