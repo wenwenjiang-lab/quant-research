@@ -8,6 +8,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import date
+import json
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -68,12 +70,13 @@ def assess_new_sample_eligibility(
         cutoff = cutoff.tz_localize(None)
     cutoff = cutoff.normalize()
 
-    parsed = pd.to_datetime(pd.Index(sessions), errors="coerce")
-    if parsed.isna().any():
+    labels = pd.Series(pd.Index(sessions), dtype="string").str.slice(0, 10)
+    parsed_series = pd.to_datetime(labels, format="%Y-%m-%d", errors="coerce")
+    if parsed_series.isna().any():
         raise ValueError("Session labels must all be valid dates")
-    if parsed.tz is not None:
-        parsed = parsed.tz_localize(None)
-    unique_sessions = pd.DatetimeIndex(parsed).normalize().unique().sort_values()
+    unique_sessions = (
+        pd.DatetimeIndex(parsed_series).normalize().unique().sort_values()
+    )
     new_sessions = unique_sessions[unique_sessions > cutoff]
     count = len(new_sessions)
     eligible = count >= minimum_required_sessions
@@ -91,6 +94,58 @@ def assess_new_sample_eligibility(
         minimum_required_sessions=minimum_required_sessions,
         reason=reason,
     )
+
+
+def audit_session_csv(
+    path: str | Path,
+    *,
+    session_column: str = "session_date",
+    parent_sample_end: str | date | pd.Timestamp = "2026-07-29",
+    minimum_required_sessions: int = 274,
+) -> SampleEligibility:
+    """Audit a local panel while loading only its session-date column."""
+    source = Path(path)
+    if not source.is_file():
+        raise FileNotFoundError(f"Session source does not exist: {source}")
+    try:
+        session_frame = pd.read_csv(source, usecols=[session_column])
+    except ValueError as exc:
+        raise ValueError(
+            f"Required session column {session_column!r} is missing"
+        ) from exc
+    return assess_new_sample_eligibility(
+        session_frame[session_column],
+        parent_sample_end=parent_sample_end,
+        minimum_required_sessions=minimum_required_sessions,
+    )
+
+
+def write_eligibility_report(
+    audit: SampleEligibility,
+    destination: str | Path,
+) -> Path:
+    """Write a date-only readiness report without market observations."""
+    target = Path(destination)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "eligible": audit.eligible,
+        "parent_sample_end": audit.parent_sample_end.isoformat(),
+        "first_new_session": (
+            audit.first_new_session.isoformat() if audit.first_new_session else None
+        ),
+        "last_new_session": (
+            audit.last_new_session.isoformat() if audit.last_new_session else None
+        ),
+        "new_session_count": audit.new_session_count,
+        "minimum_required_sessions": audit.minimum_required_sessions,
+        "remaining_sessions": max(
+            audit.minimum_required_sessions - audit.new_session_count,
+            0,
+        ),
+        "reason": audit.reason,
+    }
+    target.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    return target
 
 
 def _aligned_frame(
