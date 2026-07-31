@@ -36,6 +36,11 @@ made because execution costs and market microstructure are outside the study.
 
 ## Next study — Economic relevance protocol
 
+The prospective design is now frozen in
+[`reports/economic_relevance_protocol.md`](reports/economic_relevance_protocol.md)
+and [`configs/economic_relevance.toml`](configs/economic_relevance.toml). The
+study has not started and no result is available.
+
 Any economic evaluation will be a new registered study, not a reinterpretation
 or rerun of the completed holdout. Before analysis it must specify:
 
