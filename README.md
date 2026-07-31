@@ -101,6 +101,7 @@ Registered gate fails -> stop research question and keep holdout sealed
 | Multiple comparisons | Holm family-wise p-value adjustment |
 | Overstated conclusions | Minimum-sample gate and explicit in-progress status |
 | Restricted vendor data | Raw and processed observations excluded from version control |
+| Publication integrity | CI checks relative links, SVG validity, and tracked-data policy |
 | Post-hoc model search | Frozen confirmation gate and formal stop decision |
 | Irreproducible licensed sample | Deterministic synthetic end-to-end demonstration |
 
@@ -134,6 +135,7 @@ quant-research/
 │   ├── cross_asset_models.py   # Restricted and unrestricted baselines
 │   ├── cross_asset_evaluation.py # Walk-forward comparison and inference
 │   ├── cross_asset_holdout.py  # Single-use holdout enforcement
+│   ├── publication_integrity.py # Public links, figures and data-policy audit
 │   └── validation.py           # Leakage-resistant time-series splits
 ├── reports/
 │   ├── executive_summary.md    # Recruiter-facing two-study summary
