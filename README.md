@@ -99,7 +99,7 @@ Registered gate fails -> stop research question and keep holdout sealed
 | Look-ahead leakage | Opening features and post-opening outcomes use disjoint intervals |
 | Random time-series splitting | Chronological and expanding-window validation utilities |
 | Multiple comparisons | Holm family-wise p-value adjustment |
-| Overstated conclusions | Minimum-sample gate and explicit in-progress status |
+| Overstated conclusions | Minimum-sample gate and explicit study-decision status |
 | Restricted vendor data | Raw and processed observations excluded from version control |
 | Publication integrity | CI checks relative links, SVG validity, and tracked-data policy |
 | Post-hoc model search | Frozen confirmation gate and formal stop decision |
