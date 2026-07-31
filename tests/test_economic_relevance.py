@@ -5,9 +5,11 @@ import pytest
 
 from src.economic_relevance import (
     ExecutionCosts,
+    audit_session_csv,
     assess_new_sample_eligibility,
     cost_aware_pnl,
     delayed_intraday_positions,
+    write_eligibility_report,
 )
 
 
@@ -42,6 +44,25 @@ def test_only_dates_strictly_after_parent_sample_are_counted() -> None:
     assert audit.last_new_session.isoformat() == "2026-07-31"
 
 
+def test_sample_gate_normalizes_mixed_daylight_saving_offsets() -> None:
+    sessions = pd.Index(
+        [
+            "2026-01-05 00:00:00-05:00",
+            "2026-07-30 00:00:00-04:00",
+        ]
+    )
+
+    audit = assess_new_sample_eligibility(
+        sessions,
+        parent_sample_end="2026-07-29",
+        minimum_required_sessions=1,
+    )
+
+    assert audit.eligible
+    assert audit.new_session_count == 1
+    assert audit.first_new_session.isoformat() == "2026-07-30"
+
+
 def test_sample_gate_rejects_invalid_session_labels() -> None:
     with pytest.raises(ValueError, match="valid dates"):
         assess_new_sample_eligibility(
@@ -49,6 +70,33 @@ def test_sample_gate_rejects_invalid_session_labels() -> None:
             parent_sample_end="2026-07-29",
             minimum_required_sessions=1,
         )
+
+
+def test_local_csv_audit_reads_sessions_and_writes_date_only_report(tmp_path) -> None:
+    panel = tmp_path / "panel.csv"
+    panel.write_text(
+        "session_date,secret_market_value\n"
+        "2026-07-29,100\n"
+        "2026-07-30,999\n",
+        encoding="utf-8",
+    )
+
+    audit = audit_session_csv(panel, minimum_required_sessions=2)
+    report = write_eligibility_report(audit, tmp_path / "status.json")
+    report_text = report.read_text(encoding="utf-8")
+
+    assert audit.new_session_count == 1
+    assert '"remaining_sessions": 1' in report_text
+    assert "secret_market_value" not in report_text
+    assert "999" not in report_text
+
+
+def test_local_csv_audit_requires_named_session_column(tmp_path) -> None:
+    panel = tmp_path / "panel.csv"
+    panel.write_text("wrong_column\n2026-07-30\n", encoding="utf-8")
+
+    with pytest.raises(ValueError, match="session column"):
+        audit_session_csv(panel)
 
 
 def test_signal_is_delayed_and_each_session_finishes_flat() -> None:
