@@ -13,6 +13,11 @@ holdout sealed. Study 02 confirmed a small MNQ–QQQ information-transmission
 effect in a single-use holdout. Neither result is presented as validated Alpha
 or a deployable strategy.
 
+Study 03 is a prospective, cost-aware economic-relevance protocol. It has not
+started and contains no performance result. Its role is to test whether a
+frozen signal survives executable delay, commissions, spread, and slippage on
+a newly protected sample without reopening either completed holdout.
+
 This repository develops a reproducible empirical-research workflow for liquid
 futures and ETFs. The first study examines opening-range behavior in Micro
 E-mini Nasdaq-100 futures (MNQ). MNQ is the initial test case; the research
@@ -203,6 +208,17 @@ and the final decision is reported in
 The holdout is now permanently closed to retuning or repeat evaluation.
 
 ![MNQ–QQQ final holdout evidence](figures/cross_asset_holdout_summary.svg)
+
+## Study 03 — Prospective Economic Relevance
+
+The next study is preregistered but not executed. It separates statistical
+predictability from economic value by freezing signal timing, next-bar
+execution, transaction-cost stress tests, exposure constraints, chronological
+validation, and a single-use future holdout. The completed Study 02 holdout is
+explicitly unavailable for tuning or confirmation.
+
+See the [`prospective protocol`](reports/economic_relevance_protocol.md) and
+its [`machine-readable specification`](configs/economic_relevance.toml).
 
 ## Disclaimer
 
