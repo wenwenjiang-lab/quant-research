@@ -259,6 +259,7 @@ def cost_aware_pnl(
         {
             "position": frame["position"],
             "trade_quantity": trade_quantity,
+            "traded_notional": traded_notional,
             "gross_pnl": gross_pnl,
             "commission": commission,
             "spread_cost": spread_cost,
