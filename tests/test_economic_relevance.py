@@ -5,9 +5,50 @@ import pytest
 
 from src.economic_relevance import (
     ExecutionCosts,
+    assess_new_sample_eligibility,
     cost_aware_pnl,
     delayed_intraday_positions,
 )
+
+
+def test_completed_parent_dates_cannot_be_reused_as_new_sample() -> None:
+    sessions = pd.Index(["2026-07-28", "2026-07-29"])
+
+    audit = assess_new_sample_eligibility(
+        sessions,
+        parent_sample_end="2026-07-29",
+        minimum_required_sessions=2,
+    )
+
+    assert not audit.eligible
+    assert audit.new_session_count == 0
+    assert audit.first_new_session is None
+
+
+def test_only_dates_strictly_after_parent_sample_are_counted() -> None:
+    sessions = pd.Series(
+        ["2026-07-29", "2026-07-30", "2026-07-30", "2026-07-31"]
+    )
+
+    audit = assess_new_sample_eligibility(
+        sessions,
+        parent_sample_end="2026-07-29",
+        minimum_required_sessions=2,
+    )
+
+    assert audit.eligible
+    assert audit.new_session_count == 2
+    assert audit.first_new_session.isoformat() == "2026-07-30"
+    assert audit.last_new_session.isoformat() == "2026-07-31"
+
+
+def test_sample_gate_rejects_invalid_session_labels() -> None:
+    with pytest.raises(ValueError, match="valid dates"):
+        assess_new_sample_eligibility(
+            pd.Index(["2026-07-30", "not-a-date"]),
+            parent_sample_end="2026-07-29",
+            minimum_required_sessions=1,
+        )
 
 
 def test_signal_is_delayed_and_each_session_finishes_flat() -> None:

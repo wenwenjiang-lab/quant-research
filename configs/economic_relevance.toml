@@ -11,6 +11,14 @@ completed_parent_holdout_must_not_be_reused = true
 licensed_observations_must_not_be_committed = true
 results_available = false
 
+[sample_eligibility]
+parent_sample_end = "2026-07-29"
+new_sessions_must_be_strictly_after_parent_end = true
+minimum_new_sessions_before_development = 274
+current_new_session_count = 0
+eligible_to_start = false
+reason = "The currently audited common data ends with the completed parent sample. Study 03 awaits genuinely new observations."
+
 [signal]
 source = "frozen_parent_unrestricted_forecast"
 decision_frequency = "1min"

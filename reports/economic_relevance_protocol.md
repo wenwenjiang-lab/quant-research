@@ -14,6 +14,18 @@ This is a prospective study. It must use a newly protected evaluation sample.
 The completed Study 02 holdout is permanently closed and cannot be reused for
 threshold selection, cost calibration, model choice, or confirmation.
 
+## Sample-eligibility gate
+
+The parent study's final observation is dated **2026-07-29**. Study 03 counts
+only distinct sessions strictly after that date. The currently audited common
+dataset contains zero such sessions, so empirical development remains locked.
+This is a sample-availability statement, not a market or performance result.
+
+Before development begins, at least 274 new sessions are required: 252 initial
+training sessions, a one-session embargo, and one 21-session test block. The
+date-only gate in `src/economic_relevance.py` enforces this boundary without
+reading prices, forecasts, returns, or outcomes.
+
 ## Primary estimand
 
 The primary estimand is net return after prespecified commissions, spread, and
