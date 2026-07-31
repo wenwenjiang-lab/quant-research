@@ -146,6 +146,7 @@ quant-research/
 │   ├── economic_evaluation.py  # Frozen net-performance decision metrics
 │   ├── sample_registry.py      # Immutable local sample-boundary records
 │   ├── protocol_audit.py       # Cross-field preregistration consistency
+│   ├── study03_preflight.py    # Fail-closed protocol and sample start gate
 │   ├── publication_integrity.py # Public links, figures and data-policy audit
 │   └── validation.py           # Leakage-resistant time-series splits
 ├── reports/
