@@ -1,0 +1,69 @@
+[study]
+study_id = "nq-qqq-economic-relevance-001"
+title = "Cost-Aware Economic Relevance of Nasdaq Futures to QQQ Information Transmission"
+status = "preregistered_not_started"
+parent_study_id = "nq-qqq-lead-lag-001"
+timezone = "America/New_York"
+
+[research_boundary]
+new_evaluation_sample_required = true
+completed_parent_holdout_must_not_be_reused = true
+licensed_observations_must_not_be_committed = true
+results_available = false
+
+[signal]
+source = "frozen_parent_unrestricted_forecast"
+decision_frequency = "1min"
+signal_available_after_interval_close = true
+same_interval_execution_forbidden = true
+minimum_latency_bars = 1
+
+[execution]
+instrument = "QQQ"
+fill_convention = "next_bar_volume_weighted_average_price"
+market_on_close_allowed = false
+partial_fills_modeled = false
+overnight_positions_allowed = false
+flatten_before = "15:55"
+
+[costs]
+commission_per_share_usd = 0.005
+minimum_commission_per_order_usd = 1.00
+spread_model = "observed_quote_when_available_otherwise_prespecified_stress_grid"
+one_way_slippage_bps = [0.5, 1.0, 2.0]
+borrow_cost_modeled = false
+
+[portfolio]
+position_rule = "sign_of_forecast_with_no_trade_threshold"
+gross_exposure_limit = 1.0
+maximum_position_changes_per_session = 30
+leverage_allowed = false
+
+[validation]
+method = "expanding_window_by_session"
+random_shuffle_allowed = false
+ordinary_kfold_allowed = false
+minimum_training_sessions = 252
+test_block_sessions = 21
+embargo_sessions = 1
+final_holdout_fraction = 0.20
+single_holdout_evaluation_only = true
+
+[metrics]
+primary = "net_return_after_costs_relative_to_no_trade"
+secondary = ["turnover", "maximum_drawdown", "hit_rate", "net_sharpe_ratio"]
+report_gross_and_net_results = true
+report_cost_break_even = true
+
+[decision_rule]
+primary_net_return_must_exceed = 0.0
+lower_confidence_bound_must_exceed = 0.0
+positive_session_fraction_must_exceed = 0.50
+must_survive_slippage_bps = 1.0
+failure_is_publishable = true
+retuning_after_holdout_forbidden = true
+
+[interpretation]
+alpha_claim_allowed = false
+trading_strategy_claim_allowed = false
+reason = "This protocol is registered but not executed. Any future claim requires a new protected sample, cost-aware evidence, and the frozen decision rule."
