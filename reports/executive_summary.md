@@ -12,6 +12,7 @@ deployable trading strategy.
 |---|---|---|---|
 | Opening Range Behavior | Do 09:30–10:00 MNQ features improve forecasts of 10:00–16:00 price variation? | Development gate failed; final holdout remained sealed | Negative result for the registered forecasting question |
 | MNQ–QQQ Information Transmission | Do lagged MNQ returns improve one-minute QQQ forecasts beyond QQQ's own lags? | Single-use final holdout passed the frozen statistical rule | Small, short-lived predictive relationship; not validated Alpha |
+| Prospective Economic Relevance | Can a frozen MNQ–QQQ signal retain net economic value under explicit execution costs? | Not started; preflight gate is closed at 0/343 new sessions | Preregistered protocol only; no empirical result or Alpha claim |
 
 ## Study 01 — Opening Range Behavior
 
@@ -66,6 +67,21 @@ the one-minute MNQ lag is removed. This supports a narrow interpretation of
 rapid information transmission. It does not establish executable Alpha:
 spread, fees, slippage, fills, queue position, market impact, and capacity are
 not modeled.
+
+## Study 03 — Prospective Economic Relevance
+
+Study 03 is a preregistered follow-up designed to test whether the narrow
+MNQ–QQQ forecasting relationship can retain economic relevance after frozen
+assumptions for spread, fees, slippage, latency, and turnover. Empirical
+development has **not started**. The fail-closed preflight gate currently
+records **0 of 343 required genuinely new sessions** after 2026-07-29: 274 are
+reserved for chronological development and 69 for a single-use final holdout.
+
+The protocol, sample boundary, validation design, decision rule, and
+machine-readable consistency audit were frozen before collecting the new
+sample. No Study 03 market outcome, forecast, P&L, or holdout result has been
+accessed. This section documents prospective research governance; it is not a
+third completed empirical study, a trading strategy, or evidence of Alpha.
 
 ## What the portfolio demonstrates
 
