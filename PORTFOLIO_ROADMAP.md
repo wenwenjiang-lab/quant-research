@@ -1,7 +1,8 @@
 # Quantitative Research Roadmap
 
-> **Portfolio status: active.** Two registered empirical studies are complete.
-> Future milestones describe intended evidence, not trading performance.
+> **Portfolio status: active.** Three registered empirical studies are complete,
+> and one prospective study is preregistered but has not started. Future
+> milestones describe intended evidence, not trading performance.
 
 ## Completed research controls
 
@@ -19,7 +20,8 @@
   expanding-window evaluation, embargoes, frozen gates, and protected holdouts
   are enforced in code.
 - **External validity:** the portfolio progresses from MNQ session behavior to
-  synchronized MNQ–QQQ information transmission.
+  synchronized MNQ–QQQ information transmission and ten-level order-book
+  replication.
 
 ## Completed studies
 
@@ -34,7 +36,15 @@ The single-use final holdout confirmed a small one-minute statistical
 relationship. The holdout is permanently closed. No trading or Alpha claim is
 made because execution costs and market microstructure are outside the study.
 
-## Next study — Economic relevance protocol
+### Study 04 — Order-Book Depth and One-Second Price Direction
+
+Ten-level order-book features passed chronological Development validation but
+failed the frozen one-time July replication threshold. The study is closed
+without retuning. A separately labeled post-hoc diagnosis finds measurable
+displayed-depth distribution shift and no single-session explanation for the
+failure; it does not change the registered decision or establish causality.
+
+## Prospective Study 03 — Economic relevance protocol
 
 The prospective design is now frozen in
 [`reports/economic_relevance_protocol.md`](reports/economic_relevance_protocol.md)
@@ -61,8 +71,9 @@ or rerun of the completed holdout. Before analysis it must specify:
    definitions and a separately registered sample.
 2. Compare regularized linear and nonlinear models only after transparent
    baselines, with calibration and stability diagnostics.
-3. Add event-time and liquidity-regime analysis when suitable licensed quote or
-   trade data are available.
+3. Preregister a new event-time or liquidity-regime replication using a new
+   untouched sample; the closed Study 04 holdout cannot be reused for model
+   selection or confirmation.
 
 Each extension requires its own study identifier, frozen protocol, and data
 boundary. Completed holdouts are never reopened for tuning.
