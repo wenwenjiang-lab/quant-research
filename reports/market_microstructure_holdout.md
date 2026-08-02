@@ -18,7 +18,7 @@ day, level-one imbalance, and microprice displacement.
 ## Data
 
 - Source: licensed Databento CME Globex MDP 3.0 `mbp-10` records for `MNQ.v.0`.
-- Window: 09:30â€“10:00 New York time.
+- Window: 09:30–10:00 New York time.
 - Development: 43 sessions, 2026-05-01 through 2026-06-30.
 - Final holdout: 19 sessions, 2026-07-01 through 2026-07-27.
 - Audited events: 196,679,054 Development and 93,992,308 holdout updates.

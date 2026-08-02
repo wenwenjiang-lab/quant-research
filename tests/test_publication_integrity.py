@@ -7,6 +7,7 @@ from src.publication_integrity import (
     broken_relative_links,
     forbidden_tracked_data,
     invalid_svg_files,
+    mojibake_in_markdown,
 )
 
 
@@ -32,6 +33,13 @@ def test_invalid_svg_is_reported(tmp_path: Path) -> None:
 
     assert len(failures) == 1
     assert failures[0].startswith("invalid SVG figure.svg:")
+
+
+def test_mojibake_in_markdown_is_reported(tmp_path: Path) -> None:
+    document = tmp_path / "report.md"
+    document.write_text("Window: 09:30â€“10:00", encoding="utf-8")
+
+    assert mojibake_in_markdown(tmp_path) == ["possible mojibake in report.md"]
 
 
 def test_licensed_data_paths_cannot_be_tracked() -> None:
