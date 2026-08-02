@@ -17,6 +17,8 @@ Because these questions were examined after opening the holdout, every result
 below is exploratory. They can motivate a new preregistered study, but they
 cannot rescue the closed test.
 
+![Post-hoc Study 04 stability diagnosis](../figures/market_microstructure_stability.svg)
+
 ## Samples and method
 
 The comparison uses aggregate summaries derived from the same licensed local
