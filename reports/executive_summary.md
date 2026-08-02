@@ -1,10 +1,12 @@
 # Research Portfolio Summary
 
-This portfolio contains two completed empirical studies of Nasdaq market
-behavior. Both use licensed one-minute data kept outside version control,
-point-in-time feature construction, chronological validation, dependence-aware
-inference, and explicit decision rules. Neither study is presented as a
-deployable trading strategy.
+This portfolio contains three completed empirical studies of Nasdaq market
+behavior and one preregistered prospective study. The completed work spans
+one-minute bars and ten-level order-book events, with licensed observations
+kept outside version control. The research uses point-in-time feature
+construction, chronological validation, dependence-aware inference, and
+explicit decision rules. None of the studies is presented as a deployable
+trading strategy.
 
 ## Evidence at a glance
 
@@ -13,6 +15,7 @@ deployable trading strategy.
 | Opening Range Behavior | Do 09:30–10:00 MNQ features improve forecasts of 10:00–16:00 price variation? | Development gate failed; final holdout remained sealed | Negative result for the registered forecasting question |
 | MNQ–QQQ Information Transmission | Do lagged MNQ returns improve one-minute QQQ forecasts beyond QQQ's own lags? | Single-use final holdout passed the frozen statistical rule | Small, short-lived predictive relationship; not validated Alpha |
 | Prospective Economic Relevance | Can a frozen MNQ–QQQ signal retain net economic value under explicit execution costs? | Not started; preflight gate is closed at 0/343 new sessions | Preregistered protocol only; no empirical result or Alpha claim |
+| Order-Book Depth | Do deeper MNQ book features improve one-second midpoint-direction forecasts beyond top-of-book information? | Development gate passed; single-use final holdout failed the frozen replication threshold | Favorable but attenuated holdout estimate; no stable Alpha or trading claim |
 
 ## Study 01 — Opening Range Behavior
 
@@ -82,6 +85,24 @@ machine-readable consistency audit were frozen before collecting the new
 sample. No Study 03 market outcome, forecast, P&L, or holdout result has been
 accessed. This section documents prospective research governance; it is not a
 third completed empirical study, a trading strategy, or evidence of Alpha.
+
+## Study 04 — Order-Book Depth and One-Second Price Direction
+
+The fourth study asks whether five- and ten-level MNQ limit-order-book features
+improve one-second midpoint-direction forecasts beyond market-state controls
+and top-of-book information. It uses licensed Databento CME Globex MDP 3.0
+`mbp-10` events, end-labeled 100-millisecond book states, one-second decision
+timestamps, chronological Development validation, and a single-use July 2026
+holdout.
+
+The multi-level model passed the Development gate but failed the registered
+holdout replication threshold. Candidate-minus-baseline holdout log loss was
+-0.000222, with 11 of 19 session wins and a session-bootstrap 95% interval of
+[-0.000505, 0.000059]. The favorable point estimate was approximately 13% of
+the Development improvement and its interval crossed zero. The study is closed
+without retuning and makes no Alpha, profitability, causality, or deployability
+claim. Full results are in the
+[`market microstructure holdout report`](market_microstructure_holdout.md).
 
 ## What the portfolio demonstrates
 
