@@ -267,6 +267,8 @@ The post-hoc
 measured input drift and session influence without refitting the model or
 changing the failed replication decision.
 
+![Post-hoc Study 04 stability diagnosis](figures/market_microstructure_stability.svg)
+
 ![Session-level market-microstructure holdout result](figures/market_microstructure_holdout_log_loss.svg)
 
 ## Disclaimer
