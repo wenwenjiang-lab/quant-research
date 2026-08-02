@@ -104,6 +104,15 @@ without retuning and makes no Alpha, profitability, causality, or deployability
 claim. Full results are in the
 [`market microstructure holdout report`](market_microstructure_holdout.md).
 
+A post-hoc stability diagnosis was run only after the registered decision was
+closed. The target-class mix was nearly unchanged, while five- and ten-level
+displayed-depth distributions shifted between Development and July. Omitting
+each holdout session in turn never reversed the average effect and still left
+it far below the registered threshold. This rules out a simple single-session
+explanation but does not establish that distribution shift caused the failure.
+No model was refit or selected. See the
+[`post-hoc stability diagnosis`](market_microstructure_stability.md).
+
 ## What the portfolio demonstrates
 
 - research questions converted into frozen, machine-readable specifications;
@@ -113,6 +122,7 @@ claim. Full results are in the
 - transparent baselines before model complexity;
 - HAC and session-level inference for dependent observations;
 - acceptance of a negative result and a permanently locked final holdout;
+- post-hoc failure diagnosis that is explicitly separated from confirmation;
 - separation of statistical evidence from economic or trading claims.
 
 Detailed protocols, audits, results, limitations, and reproducible synthetic

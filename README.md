@@ -155,7 +155,7 @@ quant-research/
 │   ├── publication_integrity.py # Public links, figures and data-policy audit
 │   └── validation.py           # Leakage-resistant time-series splits
 ├── reports/
-│   ├── executive_summary.md    # Concise two-study research overview
+│   ├── executive_summary.md    # Concise four-study portfolio overview
 │   ├── cross_asset_protocol.md # Registered information-transmission design
 │   ├── cross_asset_development_results.md # Development-only evidence
 │   ├── cross_asset_final_results.md # Single-use holdout decision
