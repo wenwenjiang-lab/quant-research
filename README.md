@@ -7,7 +7,8 @@
 > **Status: active research portfolio.** Registered studies may be complete,
 > but this repository does not claim validated alpha or a deployable strategy.
 
-Start with the concise [`research portfolio summary`](reports/executive_summary.md).
+Start with the concise [`research portfolio summary`](reports/executive_summary.md)
+or the plain-English [`research walkthrough`](reports/research_walkthrough.md).
 Study 01 produced a registered negative forecasting result and kept its final
 holdout sealed. Study 02 confirmed a small MNQ–QQQ information-transmission
 effect in a single-use holdout. Neither result is presented as validated Alpha
