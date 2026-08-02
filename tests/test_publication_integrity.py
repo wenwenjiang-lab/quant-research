@@ -43,9 +43,10 @@ def test_mojibake_in_markdown_is_reported(tmp_path: Path) -> None:
 
 
 def test_local_pytest_artifacts_are_not_public_documents(tmp_path: Path) -> None:
-    cache = tmp_path / ".pytest_tmp_example"
-    cache.mkdir()
-    (cache / "README.md").write_text("[missing](not-public.md)", encoding="utf-8")
+    for directory in (".pytest_cache", ".pytest_tmp_example", ".pytest_audit_20260802"):
+        cache = tmp_path / directory
+        cache.mkdir()
+        (cache / "README.md").write_text("[missing](not-public.md)", encoding="utf-8")
 
     assert broken_relative_links(tmp_path) == []
 

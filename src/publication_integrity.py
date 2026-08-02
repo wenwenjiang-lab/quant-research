@@ -19,7 +19,7 @@ def _is_local_artifact(path: Path, root: Path) -> bool:
     """Identify non-public cache directories created by local tooling."""
 
     return any(
-        part == ".git" or part == ".pytest_cache" or part.startswith(".pytest_tmp")
+        part == ".git" or part.startswith(".pytest_")
         for part in path.relative_to(root).parts
     )
 
