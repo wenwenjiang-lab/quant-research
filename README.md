@@ -23,6 +23,19 @@ order-book features passed Development validation but failed the prespecified
 July final-holdout threshold. The negative decision is reported without
 retuning and without an Alpha or profitability claim.
 
+## Study registry
+
+| Study | Research question | Registered disposition |
+|---|---|---|
+| STUDY-01 | Opening-range features for same-session volatility | Closed negative result; final holdout remains sealed |
+| STUDY-02 | MNQ-to-QQQ one-minute information transmission | Closed statistical confirmation; not validated Alpha |
+| STUDY-03 | Prospective cost-aware economic relevance | Preregistered; not started; 0/343 new sessions |
+| STUDY-04 | Order-book depth for one-second price direction | Closed failed replication; no retuning |
+
+The auditable [`study registry`](reports/study_registry.md) links every question,
+sample boundary, protocol, holdout state, decision, and primary evidence file.
+Its machine-readable source is [`configs/study_registry.toml`](configs/study_registry.toml).
+
 This repository develops a reproducible empirical-research workflow for liquid
 futures and ETFs. The first study examines opening-range behavior in Micro
 E-mini Nasdaq-100 futures (MNQ). MNQ is the initial test case; the research

@@ -1,0 +1,50 @@
+schema_version = 1
+portfolio_status = "active_research"
+
+[[studies]]
+id = "STUDY-01"
+title = "Opening Range Behavior in Nasdaq-100 Futures"
+question = "Do prespecified opening-range features improve out-of-sample forecasts of same-session volatility?"
+design = "chronological expanding-window development evaluation"
+sample = "1,255 eligible Development sessions through 2024-05-23; 730 out-of-sample sessions"
+status = "closed_negative"
+holdout = "sealed_unopened"
+decision = "Development confirmation gate failed; stop and retain the final holdout unopened."
+primary_evidence = "reports/phase2_development_results.md"
+protocol = "reports/phase2_protocol.md"
+
+[[studies]]
+id = "STUDY-02"
+title = "MNQ-QQQ Information Transmission"
+question = "Do lagged MNQ returns add one-minute predictive information for QQQ beyond QQQ's own lags?"
+design = "frozen restricted-versus-unrestricted forecast comparison"
+sample = "358 eligible final-holdout sessions from 2025-02-20 through 2026-07-29"
+status = "closed_confirmed_statistical"
+holdout = "opened_once_closed"
+decision = "A small statistical relationship passed the registered holdout rule; no Alpha or profitability claim."
+primary_evidence = "reports/cross_asset_final_results.md"
+protocol = "reports/cross_asset_protocol.md"
+
+[[studies]]
+id = "STUDY-03"
+title = "Prospective Economic Relevance"
+question = "Can a frozen cross-asset signal survive executable delay and conservative trading costs on genuinely new data?"
+design = "preregistered chronological development plus future single-use holdout"
+sample = "0 of 343 required sessions strictly after 2026-07-29"
+status = "preregistered_not_started"
+holdout = "unavailable_not_started"
+decision = "No empirical result exists; development remains locked until the sample gate is met."
+primary_evidence = "reports/economic_relevance_protocol.md"
+protocol = "configs/economic_relevance.toml"
+
+[[studies]]
+id = "STUDY-04"
+title = "Order-Book Depth and One-Second Price Direction"
+question = "Do ten-level MNQ order-book features improve one-second forecasts beyond top-of-book features?"
+design = "chronological Development selection followed by one frozen July replication"
+sample = "43 Development sessions and 19 final-holdout sessions from 2026-05-01 through 2026-07-27"
+status = "closed_failed_replication"
+holdout = "opened_once_closed"
+decision = "The Development effect did not meet the registered replication threshold; the study closed without retuning."
+primary_evidence = "reports/market_microstructure_holdout.md"
+protocol = "reports/market_microstructure_holdout.md"
