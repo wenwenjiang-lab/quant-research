@@ -42,6 +42,14 @@ def test_mojibake_in_markdown_is_reported(tmp_path: Path) -> None:
     assert mojibake_in_markdown(tmp_path) == ["possible mojibake in report.md"]
 
 
+def test_local_pytest_artifacts_are_not_public_documents(tmp_path: Path) -> None:
+    cache = tmp_path / ".pytest_tmp_example"
+    cache.mkdir()
+    (cache / "README.md").write_text("[missing](not-public.md)", encoding="utf-8")
+
+    assert broken_relative_links(tmp_path) == []
+
+
 def test_licensed_data_paths_cannot_be_tracked() -> None:
     paths = (
         "data/raw/.gitkeep",

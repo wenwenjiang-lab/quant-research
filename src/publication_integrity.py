@@ -15,11 +15,20 @@ _ALLOWED_DATA_FILENAMES = {".gitkeep"}
 _MOJIBAKE_MARKERS = ("â€", "â€“", "â€”", "Ã", "Â", "ðŸ", "�")
 
 
+def _is_local_artifact(path: Path, root: Path) -> bool:
+    """Identify non-public cache directories created by local tooling."""
+
+    return any(
+        part == ".git" or part == ".pytest_cache" or part.startswith(".pytest_tmp")
+        for part in path.relative_to(root).parts
+    )
+
+
 def mojibake_in_markdown(root: Path) -> list[str]:
     """Return public Markdown files containing common encoding-corruption markers."""
     failures: list[str] = []
     for document in sorted(root.rglob("*.md")):
-        if ".git" in document.parts:
+        if _is_local_artifact(document, root):
             continue
         text = document.read_text(encoding="utf-8")
         if any(marker in text for marker in _MOJIBAKE_MARKERS):
@@ -32,7 +41,7 @@ def broken_relative_links(root: Path) -> list[str]:
     """Return Markdown links whose repository-relative targets do not exist."""
     failures: list[str] = []
     for document in sorted(root.rglob("*.md")):
-        if ".git" in document.parts:
+        if _is_local_artifact(document, root):
             continue
         text = document.read_text(encoding="utf-8")
         for raw_target in _MARKDOWN_TARGET.findall(text):
@@ -56,7 +65,7 @@ def invalid_svg_files(root: Path) -> list[str]:
     """Return public SVG artifacts that are not well-formed XML."""
     failures: list[str] = []
     for svg in sorted(root.rglob("*.svg")):
-        if ".git" in svg.parts:
+        if _is_local_artifact(svg, root):
             continue
         try:
             ET.parse(svg)
