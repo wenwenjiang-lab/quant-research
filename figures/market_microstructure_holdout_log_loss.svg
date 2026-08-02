@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="560" viewBox="0 0 1100 560">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:Arial,sans-serif;fill:#172033}.title{font-size:24px;font-weight:700}.sub{font-size:14px;fill:#596579}.axis{font-size:12px;fill:#596579}.note{font-size:13px;fill:#364152}</style>
+<text x="95" y="32" class="title">Final holdout: multi-level minus top-of-book log loss</text>
+<text x="95" y="54" class="sub">Negative values favor the multi-level candidate; July 2026 was evaluated once.</text>
+<line x1="95" y1="260.00" x2="1065" y2="260.00" stroke="#334155" stroke-width="1.3"/>
+<line x1="95" y1="450.00" x2="1065" y2="450.00" stroke="#e2e8f0" stroke-width="1"/>
+<text x="85" y="454.00" text-anchor="end" class="axis">-0.0014</text>
+<line x1="95" y1="355.00" x2="1065" y2="355.00" stroke="#e2e8f0" stroke-width="1"/>
+<text x="85" y="359.00" text-anchor="end" class="axis">-0.0007</text>
+<line x1="95" y1="260.00" x2="1065" y2="260.00" stroke="#e2e8f0" stroke-width="1"/>
+<text x="85" y="264.00" text-anchor="end" class="axis">0.0000</text>
+<line x1="95" y1="165.00" x2="1065" y2="165.00" stroke="#e2e8f0" stroke-width="1"/>
+<text x="85" y="169.00" text-anchor="end" class="axis">0.0007</text>
+<line x1="95" y1="70.00" x2="1065" y2="70.00" stroke="#e2e8f0" stroke-width="1"/>
+<text x="85" y="74.00" text-anchor="end" class="axis">0.0014</text>
+<rect x="103.68" y="260.00" width="33.69" height="101.71" fill="#167d6d" rx="1"/>
+<text x="120.53" y="472" text-anchor="end" transform="rotate(-52 120.53 472)" class="axis">07-01</text>
+<rect x="154.73" y="260.00" width="33.69" height="30.10" fill="#167d6d" rx="1"/>
+<text x="171.58" y="472" text-anchor="end" transform="rotate(-52 171.58 472)" class="axis">07-02</text>
+<rect x="205.78" y="207.67" width="33.69" height="52.33" fill="#c65d35" rx="1"/>
+<text x="222.63" y="472" text-anchor="end" transform="rotate(-52 222.63 472)" class="axis">07-03</text>
+<rect x="256.84" y="260.00" width="33.69" height="106.72" fill="#167d6d" rx="1"/>
+<text x="273.68" y="472" text-anchor="end" transform="rotate(-52 273.68 472)" class="axis">07-06</text>
+<rect x="307.89" y="260.00" width="33.69" height="82.08" fill="#167d6d" rx="1"/>
+<text x="324.74" y="472" text-anchor="end" transform="rotate(-52 324.74 472)" class="axis">07-07</text>
+<rect x="358.94" y="202.64" width="33.69" height="57.36" fill="#c65d35" rx="1"/>
+<text x="375.79" y="472" text-anchor="end" transform="rotate(-52 375.79 472)" class="axis">07-08</text>
+<rect x="409.99" y="260.00" width="33.69" height="161.02" fill="#167d6d" rx="1"/>
+<text x="426.84" y="472" text-anchor="end" transform="rotate(-52 426.84 472)" class="axis">07-09</text>
+<rect x="461.05" y="196.58" width="33.69" height="63.42" fill="#c65d35" rx="1"/>
+<text x="477.89" y="472" text-anchor="end" transform="rotate(-52 477.89 472)" class="axis">07-10</text>
+<rect x="512.10" y="193.86" width="33.69" height="66.14" fill="#c65d35" rx="1"/>
+<text x="528.95" y="472" text-anchor="end" transform="rotate(-52 528.95 472)" class="axis">07-13</text>
+<rect x="563.15" y="231.67" width="33.69" height="28.33" fill="#c65d35" rx="1"/>
+<text x="580.00" y="472" text-anchor="end" transform="rotate(-52 580.00 472)" class="axis">07-14</text>
+<rect x="614.21" y="260.00" width="33.69" height="155.83" fill="#167d6d" rx="1"/>
+<text x="631.05" y="472" text-anchor="end" transform="rotate(-52 631.05 472)" class="axis">07-15</text>
+<rect x="665.26" y="247.73" width="33.69" height="12.27" fill="#c65d35" rx="1"/>
+<text x="682.11" y="472" text-anchor="end" transform="rotate(-52 682.11 472)" class="axis">07-16</text>
+<rect x="716.31" y="120.51" width="33.69" height="139.49" fill="#c65d35" rx="1"/>
+<text x="733.16" y="472" text-anchor="end" transform="rotate(-52 733.16 472)" class="axis">07-17</text>
+<rect x="767.36" y="247.78" width="33.69" height="12.22" fill="#c65d35" rx="1"/>
+<text x="784.21" y="472" text-anchor="end" transform="rotate(-52 784.21 472)" class="axis">07-20</text>
+<rect x="818.42" y="260.00" width="33.69" height="8.18" fill="#167d6d" rx="1"/>
+<text x="835.26" y="472" text-anchor="end" transform="rotate(-52 835.26 472)" class="axis">07-21</text>
+<rect x="869.47" y="260.00" width="33.69" height="151.10" fill="#167d6d" rx="1"/>
+<text x="886.32" y="472" text-anchor="end" transform="rotate(-52 886.32 472)" class="axis">07-22</text>
+<rect x="920.52" y="260.00" width="33.69" height="113.25" fill="#167d6d" rx="1"/>
+<text x="937.37" y="472" text-anchor="end" transform="rotate(-52 937.37 472)" class="axis">07-23</text>
+<rect x="971.57" y="260.00" width="33.69" height="23.85" fill="#167d6d" rx="1"/>
+<text x="988.42" y="472" text-anchor="end" transform="rotate(-52 988.42 472)" class="axis">07-24</text>
+<rect x="1022.63" y="260.00" width="33.69" height="66.00" fill="#167d6d" rx="1"/>
+<text x="1039.47" y="472" text-anchor="end" transform="rotate(-52 1039.47 472)" class="axis">07-27</text>
+<text x="95" y="525" class="note">Mean delta: -0.000222 | 95% session bootstrap interval: [-0.000505, 0.000059] | Registered result: FAIL</text>
+<rect x="805" y="18" width="16" height="16" fill="#167d6d"/><text x="827" y="31" class="axis">Candidate better</text>
+<rect x="940" y="18" width="16" height="16" fill="#c65d35"/><text x="962" y="31" class="axis">Baseline better</text>
+</svg>

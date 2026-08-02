@@ -18,6 +18,11 @@ started and contains no performance result. Its role is to test whether a
 frozen signal survives executable delay, commissions, spread, and slippage on
 a newly protected sample without reopening either completed holdout.
 
+Study 04 is a completed market-microstructure replication study. Ten-level MNQ
+order-book features passed Development validation but failed the prespecified
+July final-holdout threshold. The negative decision is reported without
+retuning and without an Alpha or profitability claim.
+
 This repository develops a reproducible empirical-research workflow for liquid
 futures and ETFs. The first study examines opening-range behavior in Micro
 E-mini Nasdaq-100 futures (MNQ). MNQ is the initial test case; the research
@@ -237,6 +242,28 @@ in [`src/economic_relevance.py`](src/economic_relevance.py),
 [`src/economic_evaluation.py`](src/economic_evaluation.py). They are validated
 entirely with deterministic synthetic fixtures. No Study 03 market outcome has
 been inspected and no empirical result has been produced.
+
+## Study 04 — Market Microstructure Replication
+
+This completed study asks whether five- and ten-level MNQ order-book features
+improve one-second midpoint-direction forecasts beyond transparent market-state
+and top-of-book baselines. It audits approximately 291 million licensed CME
+Globex MBP-10 updates across 62 sessions while keeping raw and derived market
+data outside version control.
+
+The multi-level candidate passed chronological Development validation, but its
+incremental log-loss improvement attenuated from 0.001738 in Development to
+0.000222 in the one-time July holdout. It improved 11 of 19 holdout sessions,
+but the session bootstrap interval crossed zero and the frozen replication
+threshold was not met. The registered conclusion is **non-replication**—not
+validated Alpha, profitability, or a deployable trading strategy.
+
+See the complete
+[`market-microstructure holdout report`](reports/market_microstructure_holdout.md),
+including the data contract, model ladder, quality controls, uncertainty,
+procedural disclosure, limitations, and final research disposition.
+
+![Session-level market-microstructure holdout result](figures/market_microstructure_holdout_log_loss.svg)
 
 ## Disclaimer
 
