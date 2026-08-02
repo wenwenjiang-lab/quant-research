@@ -54,6 +54,15 @@ coverage. These mechanisms are not equivalent. The pipeline therefore reports
 the intervals and applies conservative completeness gates instead of imputing
 prices or automatically labelling every interval as corrupt.
 
+A separate date-only lineage audit maps the 56 exceptions to 8 distinct
+sessions and compares those dates with the exact 1,256-session Phase I
+Development panel. The intersection is empty: no session containing a recorded
+intraday gap enters that analysis. The reusable check is implemented in
+`src/lineage_audit.py`; it fails closed if any overlap exists or if the declared
+exception count disagrees with the event list. This resolves analytical
+contamination for the historical Phase I panel but does not identify the market
+or vendor mechanism behind every absent aggregate.
+
 ## Contract identity audit
 
 The regular-session sample contains 30 distinct primary Databento instrument
