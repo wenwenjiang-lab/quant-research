@@ -49,6 +49,7 @@ coverage.xml
 *.py.cover
 .hypothesis/
 .pytest_cache/
+.pytest_tmp*/
 cover/
 
 # Translations
@@ -232,3 +233,4 @@ figures/*
 reports/*
 !reports/.gitkeep
 !reports/*.md
+!reports/market_microstructure_stability_diagnostics.json

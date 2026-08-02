@@ -262,6 +262,10 @@ See the complete
 [`market-microstructure holdout report`](reports/market_microstructure_holdout.md),
 including the data contract, model ladder, quality controls, uncertainty,
 procedural disclosure, limitations, and final research disposition.
+The post-hoc
+[`stability diagnosis`](reports/market_microstructure_stability.md) documents
+measured input drift and session influence without refitting the model or
+changing the failed replication decision.
 
 ![Session-level market-microstructure holdout result](figures/market_microstructure_holdout_log_loss.svg)
 

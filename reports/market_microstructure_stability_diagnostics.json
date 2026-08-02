@@ -1,0 +1,118 @@
+{
+  "status": "post_hoc_descriptive_diagnostic",
+  "model_refit_or_selection_performed": false,
+  "registered_decision_changed": false,
+  "development": {
+    "sessions": 43,
+    "observations": 77214,
+    "class_distribution": {
+      "-1": 0.4814929934985883,
+      "0": 0.03174294817002098,
+      "1": 0.4867640583313907
+    }
+  },
+  "holdout": {
+    "sessions": 19,
+    "observations": 34143,
+    "class_distribution": {
+      "-1": 0.4843745423659315,
+      "0": 0.029435023284421404,
+      "1": 0.4861904343496471
+    }
+  },
+  "feature_drift": [
+    {
+      "feature": "ask_depth_5",
+      "development_mean": 34.65577485948144,
+      "holdout_mean": 32.49155024455965,
+      "standardized_mean_difference": -0.14460109132680934,
+      "population_stability_index": 0.33600164268116267
+    },
+    {
+      "feature": "ask_depth_10",
+      "development_mean": 84.50626829331469,
+      "holdout_mean": 80.13516679846528,
+      "standardized_mean_difference": -0.12583179420167134,
+      "population_stability_index": 0.322889943419666
+    },
+    {
+      "feature": "bid_depth_5",
+      "development_mean": 34.16424482606781,
+      "holdout_mean": 32.44249187241894,
+      "standardized_mean_difference": -0.1199199180659896,
+      "population_stability_index": 0.31002627356647494
+    },
+    {
+      "feature": "bid_depth_10",
+      "development_mean": 82.81557748594814,
+      "holdout_mean": 79.81835222446767,
+      "standardized_mean_difference": -0.09329827686703888,
+      "population_stability_index": 0.3039543446713454
+    },
+    {
+      "feature": "recent_volatility_1s",
+      "development_mean": 3.6307862675128093,
+      "holdout_mean": 3.814643575507883,
+      "standardized_mean_difference": 0.09129709177308316,
+      "population_stability_index": 0.03897029993129797
+    },
+    {
+      "feature": "imbalance_5",
+      "development_mean": -0.005414908370925945,
+      "holdout_mean": 0.00020950300379950025,
+      "standardized_mean_difference": 0.03368324145225908,
+      "population_stability_index": 0.03613797918662184
+    },
+    {
+      "feature": "spread_ticks",
+      "development_mean": 2.3720568808765248,
+      "holdout_mean": 2.2554549980962424,
+      "standardized_mean_difference": -0.1145982992073092,
+      "population_stability_index": 0.030339116503020874
+    },
+    {
+      "feature": "event_count_100ms",
+      "development_mean": 233.00135985702076,
+      "holdout_mean": 253.7128254693495,
+      "standardized_mean_difference": 0.13358285810722187,
+      "population_stability_index": 0.023459708230193613
+    },
+    {
+      "feature": "imbalance_10",
+      "development_mean": -0.0076363457980944864,
+      "holdout_mean": -0.0005540724092757066,
+      "standardized_mean_difference": 0.04677030861016923,
+      "population_stability_index": 0.019703458032364694
+    },
+    {
+      "feature": "microprice_deviation_ticks",
+      "development_mean": -0.002586018439183944,
+      "holdout_mean": 7.053957214536079e-05,
+      "standardized_mean_difference": 0.005689934082696179,
+      "population_stability_index": 0.011189966873884748
+    },
+    {
+      "feature": "imbalance_1",
+      "development_mean": -0.003384545477984389,
+      "holdout_mean": -0.0001630134282174861,
+      "standardized_mean_difference": 0.0084102743446672,
+      "population_stability_index": 0.004909655965194219
+    },
+    {
+      "feature": "recent_mid_change_ticks_1s",
+      "development_mean": 0.00338021602300101,
+      "holdout_mean": -0.013575257007292856,
+      "standardized_mean_difference": -0.001257782083611333,
+      "population_stability_index": 0.0012798359102908297
+    }
+  ],
+  "session_influence": {
+    "registered_mean_log_loss_delta": -0.0002218007234251532,
+    "leave_one_out_minimum": -0.00029159339620555343,
+    "leave_one_out_maximum": -0.00016778555833851176,
+    "most_favorable_omission": "2026-07-17",
+    "least_favorable_omission": "2026-07-09",
+    "sign_reversals": 0
+  },
+  "interpretation_guard": "Post-hoc description only. These diagnostics do not rescue the failed holdout, validate Alpha, or authorize model tuning."
+}
