@@ -12,6 +12,20 @@ import xml.etree.ElementTree as ET
 _MARKDOWN_TARGET = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 _EXTERNAL_SCHEME = re.compile(r"^[a-zA-Z][a-zA-Z0-9+.-]*:")
 _ALLOWED_DATA_FILENAMES = {".gitkeep"}
+_MOJIBAKE_MARKERS = ("â€", "â€“", "â€”", "Ã", "Â", "ðŸ", "�")
+
+
+def mojibake_in_markdown(root: Path) -> list[str]:
+    """Return public Markdown files containing common encoding-corruption markers."""
+    failures: list[str] = []
+    for document in sorted(root.rglob("*.md")):
+        if ".git" in document.parts:
+            continue
+        text = document.read_text(encoding="utf-8")
+        if any(marker in text for marker in _MOJIBAKE_MARKERS):
+            relative = document.relative_to(root).as_posix()
+            failures.append(f"possible mojibake in {relative}")
+    return failures
 
 
 def broken_relative_links(root: Path) -> list[str]:
@@ -84,5 +98,6 @@ def audit_publication(root: Path) -> list[str]:
     return [
         *broken_relative_links(repository),
         *invalid_svg_files(repository),
+        *mojibake_in_markdown(repository),
         *forbidden_tracked_data(tracked_files(repository)),
     ]
