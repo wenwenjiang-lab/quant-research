@@ -7,6 +7,12 @@
 > **Status: active research portfolio.** Registered studies may be complete,
 > but this repository does not claim validated alpha or a deployable strategy.
 
+## Live Research — MLB Information Efficiency
+
+**Study 05 is now live.** A frozen chronological Elo model will create timestamped, pregame MLB win-probability forecasts under a prospective protocol. The study covers the full league and uses the 2026 New York Mets as its public-facing case study. Historical development used 8,566 completed regular-season games; the selected Elo baseline achieved Development log loss 0.684305 versus 0.690881 for a fixed home-win baseline. No profitability, Alpha, or market-beating claim is made.
+
+Read the [public launch and preregistered research boundary](reports/baseball_information_efficiency_launch.md).
+
 Start with the concise [`research portfolio summary`](reports/executive_summary.md)
 or the plain-English [`research walkthrough`](reports/research_walkthrough.md).
 Study 01 produced a registered negative forecasting result and kept its final
