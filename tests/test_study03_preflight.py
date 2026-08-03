@@ -5,7 +5,9 @@ from pathlib import Path
 import tomllib
 
 import pandas as pd
+import pytest
 
+from scripts.audit_economic_relevance_sample import load_sample_gate
 from src.study03_preflight import run_study03_preflight
 
 
@@ -56,3 +58,20 @@ def test_protocol_failure_blocks_date_processing() -> None:
     assert result.eligibility is None
     assert result.validation_plan is None
     assert "same-interval execution must remain forbidden" in result.protocol_failures
+
+
+def test_readiness_audit_uses_frozen_protocol_sample_gate() -> None:
+    parent_end, minimum_sessions = load_sample_gate(
+        Path(__file__).resolve().parents[1] / "configs" / "economic_relevance.toml"
+    )
+
+    assert parent_end == "2026-07-29"
+    assert minimum_sessions == 343
+
+
+def test_readiness_audit_rejects_missing_sample_gate(tmp_path: Path) -> None:
+    protocol = tmp_path / "protocol.toml"
+    protocol.write_text('[study]\nstatus = "draft"\n', encoding="utf-8")
+
+    with pytest.raises(ValueError, match="missing.*sample_eligibility"):
+        load_sample_gate(protocol)

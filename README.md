@@ -257,6 +257,19 @@ in [`src/economic_relevance.py`](src/economic_relevance.py),
 entirely with deterministic synthetic fixtures. No Study 03 market outcome has
 been inspected and no empirical result has been produced.
 
+Future sample readiness can be checked without loading prices, returns, or
+outcomes. The command reads only `session_date`; its boundary and minimum count
+come directly from the frozen protocol rather than duplicated command-line
+defaults:
+
+```bash
+python scripts/audit_economic_relevance_sample.py path/to/local_panel.csv
+```
+
+The resulting local JSON status file remains under `data/processed/` and is not
+published to GitHub. Reaching the date-count gate permits Development work only;
+it does not authorize opening the newly reserved final holdout.
+
 ## Study 04 — Market Microstructure Replication
 
 This completed study asks whether five- and ten-level MNQ order-book features
