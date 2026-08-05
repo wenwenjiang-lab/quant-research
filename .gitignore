@@ -234,3 +234,5 @@ reports/*
 !reports/.gitkeep
 !reports/*.md
 !reports/market_microstructure_stability_diagnostics.json
+!reports/mlb_daily/
+!reports/mlb_daily/*.md
